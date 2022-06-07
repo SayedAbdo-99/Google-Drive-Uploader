@@ -1,0 +1,180 @@
+{% include "header.html" %}
+{% block body %}
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+
+
+
+        <!-- Breadcrumbs -->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="./">بداية لوحة كليجا</a></li>
+            <li class="breadcrumb-item" href="{{url_for('Index')}}">ادارة المجموعات</li>
+        </ol>
+
+<!-- 
+        <a href="#" class="btn btn-primary pull-left" data-toggle="modal" data-target="#group_add_new">
+            <i class="fa fa-plus-circle"></i> اضف مجموعة جديدة </a> -->
+
+        <div class="clearfix"></div>
+
+
+        <br>
+
+        <!-- if not normal user system, tell him -->
+
+
+        <!-- start data table -->
+        <h4>مجموعات اساسية</h4>
+
+
+        <!-- start essential groups -->
+        <div class="row mt-3">
+
+
+            <div class="col-xl-4 col-sm-6 mb-4">
+                <div class="card text-white bg-dark o-hidden h-100">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa fa-fw  fa-star"></i>
+                        </div>
+                        <div class="mr-5">
+                            المسؤولين </div>
+                    </div>
+                    <a href="" class="card-footer bg-white  clearfix small z-1" title="&nbsp;تعديل البيانات">
+                        <i class="fa fa-edit"></i> &nbsp;تعديل البيانات </a>
+                    <a href="" class="card-footer  bg-white clearfix small z-1" title="تعديل الصلاحيات">
+                        <i class="fa fa-tasks"></i> تعديل الصلاحيات </a>
+                    <a href="/getFileAuth/admin" class="card-footer  bg-white clearfix small z-1"
+                        title="إعدادات الإمتدادات">
+                        <i class="fa fa-file-code-o"></i> إعدادات الإمتدادات </a>
+                    <a class="card-footer  bg-white clearfix small z-1" href="{{url_for('loadadmins')}}"
+                        title="الاعضاء">
+                        <i class="fa fa-users"></i> الاعضاء </a>
+
+                </div>
+            </div>
+
+
+            <div class="col-xl-4 col-sm-6 mb-4">
+                <div class="card text-white bg-secondary o-hidden h-100">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa fa-fw fa-user-secret"></i>
+                        </div>
+                        <div class="mr-5">
+                            الزوار </div>
+                    </div>
+                    <a href="" class="card-footer bg-white  clearfix small z-1" title="&nbsp;تعديل البيانات">
+                        <i class="fa fa-edit"></i> &nbsp;تعديل البيانات </a>
+                    <a href="" class="card-footer  bg-white clearfix small z-1" title="تعديل الصلاحيات">
+                        <i class="fa fa-tasks"></i> تعديل الصلاحيات </a>
+                    <a href="/getFileAuth/visitor" class="card-footer  bg-white clearfix small z-1"
+                        title="إعدادات الإمتدادات">
+                        <i class="fa fa-file-code-o"></i> إعدادات الإمتدادات </a>
+
+
+                </div>
+            </div>
+
+
+            <div class="col-xl-4 col-sm-6 mb-4">
+                <div class="card text-white bg-primary o-hidden h-100">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa fa-fw fa-user-circle"></i>
+                        </div>
+                        <div class="mr-5">
+                            الاعضاء <i class="fa fa-check" title="" data-toggle="tooltip"
+                                data-original-title="هذه المجموعة افتراضية عند التسجيل"></i>
+                        </div>
+                    </div>
+                    <a href="" class="card-footer bg-white  clearfix small z-1" title="&nbsp;تعديل البيانات">
+                        <i class="fa fa-edit"></i> &nbsp;تعديل البيانات </a>
+                    <a href="" class="card-footer  bg-white clearfix small z-1" title="تعديل الصلاحيات">
+                        <i class="fa fa-tasks"></i> تعديل الصلاحيات </a>
+                    <a href="/getFileAuth/client" class="card-footer  bg-white clearfix small z-1"
+                        title="إعدادات الإمتدادات">
+                        <i class="fa fa-file-code-o"></i> إعدادات الإمتدادات </a>
+                    <a class="card-footer  bg-white clearfix small z-1" href="{{url_for('loadclients')}}"
+                        title="الاعضاء">
+                        <i class="fa fa-users"></i> الاعضاء </a>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <!-- end c_groups -->
+        <!-- end if result -->
+
+
+
+        <!-- new group modal -->
+        <div id="group_add_new" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addNewGroup"
+            aria-hidden="true">
+
+            <form method="post" action="index.php?cp=g_users&amp;smt=general" id="add_group_form">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addNewGroup">اضف مجموعة جديدة</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <label for="gname">اسم المجموعة</label>
+                                <input type="text" class="form-control" id="gname" name="gname">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cfrom">نسخ من</label>
+                                <select class="form-control" id="cfrom" name="cfrom">
+                                    <option value="-1">المجموعة الافتراضية</option>
+                                    <option value="1">المسؤولين</option>
+                                    <option value="3">الاعضاء</option>
+                                </select>
+                            </div>
+
+                            <input type="hidden" name="k_form_key"
+                                value="692a262a47f245478860259e9d5f17eacbc09245"><input type="hidden" name="k_form_time"
+                                value="1642664744">
+
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" name="newgroup" class="btn btn-primary" value="موافق">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- end new group modal -->
+
+
+        <!-- end delete group modal -->
+        <!-- end delete group modal -->
+
+        <!-- ********** -->
+        <!-- ********** -->
+        <!-- end smt == general -->
+        <!-- ********** -->
+        <!-- ********** -->
+
+
+
+
+
+        <br>
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+
+{% endblock %}
+{% include "footer.html" %}

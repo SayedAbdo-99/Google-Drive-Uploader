@@ -1,0 +1,105 @@
+{% include "uploader/upheader.html" %}
+{% block body %}
+
+
+{%with messages = get_flashed_messages()%}
+{%if messages%}
+{% for message in messages %}
+<div class="alert alert-success alert-dismissable" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    {{message}}
+</div>
+{%endfor%}
+{%endif%}
+{%endwith%}
+
+<div class="row col-md-12" id="content_index">
+    <div class="col-md-1  " style="text-align: center; background-color: rgb(216, 216, 216);">
+        اعلان (2)
+    </div>
+    <div class="col-md-10 ">
+        <!-- welcome -->
+        <div class="jumbotron" style="text-align: center; background-color: rgb(216, 216, 216);">
+            <p>اعلان (4) </p>
+        </div>
+        <!-- messages: error or info -->
+        <form id="uploader" action="/upload" method="post" enctype="multipart/form-data" onsubmit="onFormSubmit(event)">
+
+
+            <div class="card text-center">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#fileUpload" role="tab">رفع الملفات</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body tab-content">
+    
+                    
+    
+                    <!-- files upload  -->
+                    <div class="tab-pane active" id="fileUpload" role="tabpanel">
+    
+                        
+                        <div class="input-group mb-3" style="" id="file-block-1" onclick="document.getElementById('file1').click();">
+                            <span class="input-group-prepend">
+                                <div class="btn btn-primary file-button-browse">
+                                    <img src="../../static/upstatic/styles/bootstrap/images/folder.png" width="20" height="20">
+                                    <span class="image-preview-input-title">افتح</span>
+                                </div>
+                            </span>
+                            <input type="file" name="file1" id="file1" data-number="1" style="display:none">
+                            <input type="text" id="file-text1" disabled="disabled" placeholder="لم تقم بإختيار ملف!" class="form-control">
+                        </div>
+                        <div>
+                            <br>
+                            <div class="agree text-muted"><small>بالضغط على الزر بالاسفل فانت توافق على <a href="">شروط الخدمة</a>.</small></div>
+                            <input type="submit" id="submitr" name="submitr" value="رفع الملفات" class="btn btn-outline-primary">
+                        </div>
+                    </div>
+                    <div id="loadbox" class="card">
+                        <div class="card-body">
+                            فضلاً انتظر جاري رفع الملفات .....            <br>
+                            <img src="../../static/upstatic/styles/bootstrap/images/loading.gif" alt="{lang.LOADING}">
+                        </div>
+                    </div>
+                    <div class="form-group m-3" style="display:none;" id="progress_div">
+                        <div class="progress">
+                                <div class="progress-bar" id="progress_bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <p id="progress_text"></p>
+                    </div>
+
+                    <p style="color: rgb(255, 2, 2);"><b>{{ msg }}</b></p>
+                    <p style="color:blue"><b>{{ msg1 }}</b></p>
+                    <p style="color:green"><b>{{ msg0 }}</b></p>
+                    <p style="color:firebrick"><b>{{ msg2 }}</b></p>
+                    <p style="color:rgb(80, 3, 18)"><b>{{ msg3 }}</b></p>
+                    <img name="upimage"  src="{{ filenameimage }}" class="img-thumbnail" width="300" height="250" style="display:none;" />
+                </div>
+            </div>
+    
+        </form>
+        
+        <div class="jumbotron" style="text-align: center; background-color: rgb(216, 216, 216);">
+            <p>اعلان (5) </p>
+        </div>
+        <div class="jumbotron" style="text-align: center; background-color: rgb(216, 216, 216);">
+            <p>اعلان (6) </p>
+        </div>
+    </div>
+    <div class="col-md-1  " style="text-align: center; background-color: rgb(216, 216, 216);">
+        اعلان (3)
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+{% include "uploader/upfooter.html" %}

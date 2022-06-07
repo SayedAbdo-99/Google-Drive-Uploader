@@ -1,0 +1,252 @@
+{% include "header.html" %}
+{% block body %}
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+
+
+
+        <!-- Breadcrumbs -->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="./">بداية لوحة التحكم</a></li>
+            <li class="breadcrumb-item" href="{{url_for('Index')}}">ادارة المجموعات</li>
+        </ol>
+
+
+        <a href="#" class="btn btn-primary pull-left" data-toggle="modal" data-target="#group_add_new">
+            <i class="fa fa-plus-circle"></i> اضف مجموعة جديدة </a>
+
+        <div class="clearfix"></div>
+
+
+        <br>
+
+        <!-- if not normal user system, tell him -->
+
+
+        <!-- start data table -->
+        <h4>مجموعات اساسية</h4>
+
+
+        <!-- start essential groups -->
+        <div class="row mt-3">
+
+
+            <div class="col-xl-4 col-sm-6 mb-4">
+                <div class="card text-white bg-dark o-hidden h-100">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa fa-fw  fa-star"></i>
+                        </div>
+                        <div class="mr-5">
+                            المسؤولين </div>
+                    </div>
+                    <!-- <a href="" class="card-footer bg-white  clearfix small z-1" title="&nbsp;تعديل البيانات">
+                        <i class="fa fa-edit"></i> &nbsp;تعديل البيانات </a>
+                    <a href="" class="card-footer  bg-white clearfix small z-1" title="تعديل الصلاحيات">
+                        <i class="fa fa-tasks"></i> تعديل الصلاحيات </a> -->
+                    <a href="/getFileAuth/admin" class="card-footer  bg-white clearfix small z-1"
+                        title="إعدادات الإمتدادات">
+                        <i class="fa fa-file-code-o"></i> إعدادات الإمتدادات </a>
+                    <a class="card-footer  bg-white clearfix small z-1" href="{{url_for('loadadmins')}}"
+                        title="الاعضاء">
+                        <i class="fa fa-users"></i> الاعضاء </a>
+
+                </div>
+            </div>
+
+
+            <div class="col-xl-4 col-sm-6 mb-4">
+                <div class="card text-white bg-secondary o-hidden h-100">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa fa-fw fa-user-secret"></i>
+                        </div>
+                        <div class="mr-5">
+                            الزوار </div>
+                    </div>
+                    <!-- <a href="" class="card-footer bg-white  clearfix small z-1" title="&nbsp;تعديل البيانات">
+                        <i class="fa fa-edit"></i> &nbsp;تعديل البيانات </a>
+                    <a href="" class="card-footer  bg-white clearfix small z-1" title="تعديل الصلاحيات">
+                        <i class="fa fa-tasks"></i> تعديل الصلاحيات </a> -->
+                    <a href="/getFileAuth/visitor" class="card-footer  bg-white clearfix small z-1"
+                        title="إعدادات الإمتدادات">
+                        <i class="fa fa-file-code-o"></i> إعدادات الإمتدادات </a>
+
+
+                </div>
+            </div>
+
+
+            <div class="col-xl-4 col-sm-6 mb-4">
+                <div class="card text-white bg-primary o-hidden h-100">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa fa-fw fa-user-circle"></i>
+                        </div>
+                        <div class="mr-5">
+                            الاعضاء <i class="fa fa-check" title="" data-toggle="tooltip"
+                                data-original-title="هذه المجموعة افتراضية عند التسجيل"></i>
+                        </div>
+                    </div>
+                    <!-- <a href="" class="card-footer bg-white  clearfix small z-1" title="&nbsp;تعديل البيانات">
+                        <i class="fa fa-edit"></i> &nbsp;تعديل البيانات </a>
+                    <a href="" class="card-footer  bg-white clearfix small z-1" title="تعديل الصلاحيات">
+                        <i class="fa fa-tasks"></i> تعديل الصلاحيات </a> -->
+                    <a href="/getFileAuth/client" class="card-footer  bg-white clearfix small z-1"
+                        title="إعدادات الإمتدادات">
+                        <i class="fa fa-file-code-o"></i> إعدادات الإمتدادات </a>
+                    <a class="card-footer  bg-white clearfix small z-1" href="/loadGroup/client" title="الاعضاء">
+                        <i class="fa fa-users"></i> الاعضاء </a>
+
+                </div>
+            </div>
+
+
+        </div>
+        <br>
+        <!-- start essential groups -->
+        <div class="row m-2">
+            <table class="table table-striped">
+                <tbody style="  border: 1px solid black; ">
+                    <tr>
+                        <th style="text-align:center; width: 20px;   border: 1px solid black; ">رقم المجموعة</th>
+                        <th style="text-align:center; border: 1px solid black; background-color: rgb(212, 211, 211); width: 50px;">اسم المجموعة
+                        </th>
+                        <th style="text-align:center; border: 1px solid black;">إعدادات الصلاحيات</th>
+                        <th style="text-align:center; border: 1px solid black;">الخيارات</th>
+                    </tr>
+                    {% for group in groups %}
+                    <tr>
+                        <td style="text-align:center; border: 1px solid black;">{{group['g_id']}}</td>
+                        <td style="text-align:center; border: 1px solid black;">{{group['g_name']}}</td>
+                        <td style="text-align:center; border: 1px solid black;"> 
+                            <div class="card text-white bg-primary o-hidden h-100">
+
+                                <a href="/getFileAuth/{{group['g_name']}}"
+                                    class="card-footer  bg-white clearfix small z-1" title="إعدادات الإمتدادات">
+                                    <i class="fa fa-file-code-o"></i> إعدادات الإمتدادات </a>
+                                <a class="card-footer  bg-white clearfix small z-1" href="/loadGroup/{{group['g_id']}}"
+                                    title="الاعضاء">
+                                    <i class="fa fa-users"></i> الاعضاء </a>
+                            </div>
+                        </td>
+                        <td style="text-align:center; border: 1px solid black;">
+                            <a href="/delGroup/{{group['g_id']}}" onclick="return confirm_from();" title=""
+                                data-toggle="tooltip" class="btn btn-danger" data-original-title="حذف">
+                                <span class="fa fa-trash"></span>
+                            </a>
+                            <button type="button" id="editbtn" class="btn btn-success editbtn"> Edit </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+            </table>
+        </div>
+
+
+
+        <!-- end c_groups -->
+        <!-- end if result -->
+
+
+
+        <!-- new group modal -->
+        <div id="group_add_new" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addNewGroup"
+            aria-hidden="true">
+
+            <form method="post" action="addGroup" id="add_group_form">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addNewGroup">اضف مجموعة جديدة</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <label for="gname">اسم المجموعة</label>
+                                <input type="text" class="form-control" id="name" name="g_name">
+                            </div>
+
+                            <input type="hidden" name="k_form_key"
+                                value="692a262a47f245478860259e9d5f17eacbc09245"><input type="hidden" name="k_form_time"
+                                value="1642664744">
+
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" name="newgroup" class="btn btn-primary" value="موافق">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- end new group modal -->
+
+
+        <div id="modaledit" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">تعديل بيانات المجموعة</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/updateGroup" method="POST">
+                            <div class="form-group">
+                                <label for="gid">رقم المجموعة</label>
+                                <input type="text" class="form-control" id="gid" name="g_id" readonly="readonly">
+                            </div>
+                            <div class="form-group">
+                                <label for="gname">اسم المجموعة</label>
+                                <input type="text" class="form-control" id="gname" name="g_name" di>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary" type="sbumit">حفظ</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+        <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+
+                $('.editbtn').on('click', function () {
+
+                    $('#modaledit').modal('show');
+
+                    $tr = $(this).closest('tr');
+
+                    var data = $tr.children("td").map(function () {
+                        return $(this).text();
+                    }).get();
+
+                    console.log(data);
+                    $('#gid').val(data[0]);
+                    $('#gname').val(data[1]);
+
+                });
+            });
+        </script>
+
+
+        <br>
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+
+{% endblock %}
+{% include "footer.html" %}

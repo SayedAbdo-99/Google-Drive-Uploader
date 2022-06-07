@@ -1,0 +1,231 @@
+{% include "header.html" %}
+{% block body %}
+
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+
+
+
+    <!-- Breadcrumbs -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="./">بداية لوحة كليجا</a></li>
+        <li class="breadcrumb-item"><a href="">ادارة المجموعات</a></li>
+        <li class="breadcrumb-item active">إعدادات الإمتدادات (الاعضاء)</li>
+    </ol>
+
+    <a href="#" class="btn btn-primary pull-left" data-toggle="modal" data-target="#new_ext_form">
+        <i class="fa fa-plus-circle"></i> أضف امتداد جديد    </a>
+
+    
+    <div class="clearfix">
+
+    </div>
+    <br>
+
+    {%with messages = get_flashed_messages()%}
+    {%if messages%}
+    {% for message in messages %}
+    <div class="alert alert-success alert-dismissable" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{message}}
+    </div>
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
+<form method="post" action="/updateFileAuth/{{groupType}}" id="edit_exts_form"> 
+    
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon hidden-sm-down">سرعة التحميل</span>
+        <input type="text" name="speedUp" value="{{speedUp}}" placeholder="100 MB" size="6" class="form-control" style=" float:left;">
+        
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon hidden-sm-down">سرعة الـرفـع</span>
+        <input type="text" name="speedDown" value="{{speedDown}}" placeholder="100 MB" size="6" class="form-control" style="float:right;">
+
+        <input type="text" name="filesLen" value="{{files|length}}" style="display: none;"> 
+    </div>
+    <br>
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <th style="width: 20px">#</th>
+            <th>الامتداد</th>
+            <th>الحجم</th>
+            <th style="width: 100px">الخيارات</th>
+        </tr>
+        {% for row in files %}
+        <tr>
+                <td><img src="../static/images/filetypes/{{row['f_type']}}.png"></td>
+                <td>{{row['f_type']}}
+                  <input type="text" name="{{loop.index}}" value="{{row['f_type']}}" style="display: none;"> 
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="text" name="{{row['f_type']}}" value="{{row['f_size']}}" size="6" class="form-control" style="float:left;">
+                        <span class="input-group-addon hidden-sm-down">كيلوبايت</span>
+                    </div>
+
+                </td>
+                <td>
+                    <a href="/delFileAuth/{{row['f_id']}}/{{groupType}}" onclick="return confirm_from();" title="" data-toggle="tooltip" class="btn btn-danger" data-original-title="حذف">
+                        <span class="fa fa-trash"></span>
+                    </a>
+                </td>
+        </tr>
+        {% endfor %}
+        
+    </table>
+    <input type="submit" name="editexts" value="موافق" class="btn btn-primary">
+    <br>
+<input type="hidden" name="k_form_key" value="f3a8dad58e9be062a078293f0392a5fa9fd67426"><input type="hidden" name="k_form_time" value="1642934892">
+</form>
+
+    <br>
+<div class="card">
+    ملاحظة  : الأحجام تضبط بالكليوبايت . <a href="#converter_form" data-toggle="modal" data-target="#converter_modal">آلة حاسبة لتحويل الأحجام</a>
+</div>
+
+
+<!-- add new ext -->
+    <div id="new_ext_form" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addNewExt" aria-hidden="true">
+
+        <form method="post" action="/addFileAuth/{{groupType}}" id="add_new_ext--change--">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addNewExt">أضف امتداد جديد</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="gname">قم بكتابة الامتداد ليتم اضافته لهذه المجموعة.</label>
+                            <input type="text" class="form-control" id="extisnew" name="extisnew">
+                        </div>
+
+
+                        <input type="hidden" name="k_form_key" value="f3a8dad58e9be062a078293f0392a5fa9fd67426"><input type="hidden" name="k_form_time" value="1642934892">
+
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" name="newext" class="btn btn-primary" value="موافق">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+<!-- end add new ext -->
+
+
+
+<!-- converter -->
+    <div id="converter_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="converterBox" aria-hidden="true">
+
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="converterBox">آلة حاسبة لتحويل الأحجام</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                            <form>
+                            <table class="table table-striped text-center">
+                                <tbody><tr class="first">
+                                    <td>Byte</td>
+                                    <td>Kilobyte</td>
+                                    <td>Megabyte</td>
+                                    <td>Gigabyte</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" size="10" name="byte" value="0" class="form-control"></td>
+                                    <td><input type="text" size="10" name="kb" value="0" class="form-control"></td>
+                                    <td><input type="text" size="10" name="mb" value="0" class="form-control"></td>
+                                    <td><input type="text" size="10" name="gb" value="0" class="form-control"></td>
+                                </tr>
+
+                                <tr>
+                                    <td style="border-width:0px">
+                                        <button type="button" name="B2" class="btn btn-primary" onclick="convert(this.form)"><span class="bc">  &gt;  </span></button>
+                                    </td>
+                                    <td style="border-width:0px">
+                                        <button type="button" name="B22" class="btn btn-primary" onclick="convertkb(this.form)"><span class="bc">  &lt; &gt;  </span>
+                                        </button>
+                                    </td>
+                                    <td style="border-width:0px">
+                                        <button type="button" name="B23" class="btn btn-primary" onclick="convertmb(this.form)"><span class="bc">  &lt; &gt;  </span>
+                                    </button></td>
+                                    <td style="border-width:0px">
+                                        <button type="button" name="B24" class="btn btn-primary" onclick="convertgb(this.form)"><span class="bc">  &lt;  </span>
+                                    </button></td>
+                                </tr>
+                            </tbody></table>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+    </div>
+<!-- end converter -->
+
+
+<!-- converter table -->
+<script type="text/javascript">
+/*Created by: Uncle Jim :: http://jdstiles.com/javamain.html */
+
+    function convert(f)
+    {
+      f.kb.value=Math.round(f.byte.value/1024*100000)/100000
+      f.mb.value=Math.round(f.byte.value/1048576*100000)/100000
+      f.gb.value=Math.round(f.byte.value/1073741824*100000)/100000
+    }
+
+    function convertkb(f)
+    {
+      f.byte.value=Math.round(f.kb.value*1024*100000)/100000
+      f.mb.value=Math.round(f.kb.value/1024*100000)/100000
+      f.gb.value=Math.round(f.kb.value/1048576*100000)/100000
+    }
+
+    function convertmb(f)
+    {
+      f.byte.value=Math.round(f.mb.value*1048576*100000)/100000
+      f.kb.value=Math.round(f.mb.value*1024*100000)/100000
+      f.gb.value=Math.round(f.mb.value/1024*100000)/100000
+    }
+
+    function convertgb(f)
+    {
+      f.byte.value=Math.round(f.gb.value*1073741824*100000)/100000
+      f.kb.value=Math.round(f.gb.value*1048576*100000)/100000
+      f.mb.value=Math.round(f.gb.value*1024*100000)/100000
+    }
+</script>
+
+
+
+
+<!-- ********** -->
+<!-- ********** -->
+<!-- end exts -->
+<!-- ********** -->
+<!-- ********** -->
+
+
+<br>
+</div>
+<!-- /.container-fluid -->
+
+</div>
+
+{% endblock %}
+{% include "footer.html" %}

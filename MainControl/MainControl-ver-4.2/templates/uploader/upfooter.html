@@ -1,0 +1,165 @@
+<footer class="mt-5">
+    <!-- Powered by kleeja.net -->
+
+    <div class="row justify-content-between">
+        <small class="col col-md-auto">جميع الحقوق محفوظة © <a href="">UL</a></small>
+        <div class="col col-md-auto"><span class="btn btn-outline-primary"><a href="/ControlPanalLogin" class="admin_cp_link"><span>مركز التحكم</span></a></span></div>    </div>
+
+
+<div style="padding:1px;font-size:11px;display:block !important;background:#f7f7f7 !important; color:#999 !important;
+    margin:3px; position:fixed;bottom:0;left:1%;z-index:99999;text-align:center;">
+    Powered by
+    <a style="display:inline !important;color:#999 !important;" href="" onclick="window.open(this.href,'_blank');return false;" title="Kleeja">Uploader</a>
+</div>
+
+    
+</footer>
+
+</div><!-- end container -->
+
+
+
+
+<script type="text/javascript" src="../../static/upstatic/styles/bootstrap/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../static/upstatic/styles/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- don't ever delete this 
+<img src="" width="1" height="1" alt="queue"> -->
+
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+    
+    var  allowed_exts = {{ exts | default("[]") | safe}}; //['gif', 'png', 'jpg', 'jpeg', 'bmp', 'zip', 'rar','exe','ova'];
+    //{{ exts | default("[]") | tojson}}; 
+    console.log(allowed_exts)
+    var  allowed_sizes = {{ sizes | default("[]") | safe }}; //[20971522097152, 22097152097152, 20971520971522, 20920971527152, 20920971527152, 20209715297152, 20920971527152,20920971527152,20920971527152];
+    
+    $(document).ready(function(){
+        
+        $('#uploader').submit(function(){
+            var numfiles = 0;
+            $("#uploader input:file").each(function() {
+                if ($(this).get(0).files.length !== 0) {
+                    numfiles++;
+                }
+            });
+    
+    
+            if(numfiles == 0){
+                alert('لم تقم بإختيار ملف!');
+                return false;
+            }
+    
+    
+           //$('#loadbox').css('display', 'block');
+           // $('#uploader').css('display', 'none');
+    
+        });
+    
+    
+        $("#uploader input:file").change(function (){
+            if(!check_selected_file(this)){
+                $(this).val('');
+            }else{
+                if($(this).data('number') !== null){
+                    var selected_text = $('#file-text' + $(this).data('number'));
+                    selected_text.val($(this).val().split("\\").pop());
+                    //show another one
+                    var current_plus_one = Number($(this).data('number')) + 1;
+                    if($('#file-block-' + current_plus_one) !== null){
+                        $('#file-block-' + current_plus_one).show();
+                    }else{
+                        //alert reached limit
+                    }
+                }
+            }
+        });
+    
+    });
+    
+    
+    function check_selected_file(file) {
+        var selected_file = file.files[0];
+        var file_name = selected_file.name;
+        var ext_dot_position = file_name.lastIndexOf(".");
+    
+        if(ext_dot_position === -1){
+            alert('اسم الملف "%s" يحتوي على أحرف غير مسموحة.. الرجاء تغيير اسم الملف والمحاولة من جديد '.replace('%s', file_name));
+            return false;
+        }
+        var file_extension = file_name.substring(ext_dot_position + 1).toLowerCase();
+        var file_size = selected_file.size;
+        console.log(file_size)
+        if(!(allowed_exts.indexOf(file_extension) > -1)){
+            //extension not allowed message alert
+            alert(' الامتداد "%s" غير مسموح '.replace('%s', file_extension));
+            return false;
+        }else{
+    
+            //check size
+            console.log(allowed_sizes)
+            console.log(allowed_exts.indexOf(file_extension))
+            console.log(allowed_sizes[allowed_exts.indexOf(file_extension)])
+            var ext_allowed_size = allowed_sizes[allowed_exts.indexOf(file_extension)];
+
+            if(file_size > ext_allowed_size*1024){
+                //size is larger than allowed message alert
+                alert('الحجم للملف "%1$s" يجب أن يكون أقل من %2$s .'.replace('%1$s', file_name).replace('%2$s', (ext_allowed_size/1024).toFixed(2) + ' MB'));
+                return false;
+            }
+        }
+    
+        return true;
+    }
+    
+    function update_kleeja_captcha(captcha_file, input_id)
+    {
+        document.getElementById(input_id).value = '';
+        //Get a reference to CAPTCHA image
+        img = document.getElementById('kleeja_img_captcha');
+        //Change the image
+        img.src = captcha_file + '&' + Math.random();
+    }
+
+    </script>
+<script>
+    function onFormSubmit(event) {
+    event.preventDefault();
+
+    var formData=new FormData();
+    //formData.append("name",document.getElementById("name").value);
+    var file = document.getElementById("file1").files[0]
+    formData.append("file1",file);
+    console.log(formData);
+    console.log(file.name);
+    if(file.name == ''){
+        alert('لم تقم بإختيار ملف!');
+        return false;
+    }
+
+
+    var xhr=new XMLHttpRequest();
+    xhr.open("POST","/upload",true);
+    xhr.upload.addEventListener("progress",function (ev) {
+        if(ev.lengthComputable){
+                var percentage=(ev.loaded/ev.total*100|0);
+            document.getElementById("progress_div").style["display"]="block";
+            document.getElementById("progress_bar").style["width"]=""+percentage+"%";
+            document.getElementById("progress_bar").innerHTML=""+percentage+"%";
+            document.getElementById("progress_text").innerHTML="Uploaded : "+parseInt(Number((ev.loaded/1024).toFixed(1)))+"/"+parseInt(Number((ev.total/1024).toFixed(1)))+" KB";
+            console.log("Uploaded : "+ev.loaded);
+            console.log("TOTAL : "+ev.total);
+
+            console.log(percentage)
+        }
+    });
+    //document.getElementById("upimage").css('display', 'none');
+    xhr.send(formData);
+
+}
+
+</script>
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>

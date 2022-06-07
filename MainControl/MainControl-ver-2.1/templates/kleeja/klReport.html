@@ -1,0 +1,69 @@
+{% include "header.html" %}
+{% block body %}
+            <!--Main-->
+            <main class="bg-white-500 flex-1 p-3 overflow-hidden">
+
+                <div class="flex flex-col">
+                    <div class='flex flex-1  flex-col md:flex-row lg:flex-row mx-2'>
+                        <div class="mb-2 mx-2 border-solid border-gray-300  rounded border shadow-sm w-full ">
+                            <div class="bg-gray-200 px-2 py-3 border-solid border-gray-300 border-b">
+                                Kleeja Accounts
+                            </div>
+                            <div class="p-3">
+                                <button data-modal='centeredFormModal'
+                                    class="modal-trigger bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                    Add Account
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    
+                    <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+                        <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+                            <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
+                                Kleeja Accounts Data
+                            </div>
+                            <div class="p-3">
+                                <table class="table-responsive w-full rounded">
+                                    <thead>
+                                      <tr>
+                                        <th class="border w-1/8 px-4 py-2">Id</th>
+                                        <th class="border w-1/4 px-4 py-2">Username</th>
+                                        <th class="border w-1/8 px-4 py-2">Number Of Files</th>
+                                        <th class="border w-1/8 px-4 py-2">Used Size</th>
+                                        <th class="border w-1/8 px-4 py-2">UpLoad Path</th>
+                                        <th class="border w-1/8 px-4 py-2">Options</th>
+                                      </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+                                        {% for row in accounts %}
+                                        <tr>
+                                            <td class="border px-4 py-2">{{row.0}}</td>
+                                            <td class="border px-4 py-2">{{row.1}}</td>
+                                            <td class="border px-4 py-2">{{row.2}}</td>
+                                            <td class="border px-4 py-2">{{row.3}} GB</td>
+                                            <td class="border px-4 py-2">{{row.7}}</td>
+                                            <td class="border px-4 py-2">
+                                                <a href="" data-toggle="modal"   data-target="#modaledit{{row.0}}" class="bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white"> <i class="fas fa-edit"></i></a>
+                                                <a href=""  class="bg-teal-300 cursor-pointer rounded p-1 mx-1 text-red-500"> <i class="fas fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                   
+                                    </tbody>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/Grid Form-->
+                </div>
+            </main>
+            <!--/Main-->
+
+
+{% endblock %}
+{% include "footer.html" %}
+            

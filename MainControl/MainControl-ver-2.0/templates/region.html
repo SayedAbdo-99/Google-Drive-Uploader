@@ -1,0 +1,154 @@
+{% include "header.html" %}
+{% block body %}
+            <!--Main-->
+            <main class="bg-white-500 flex-1 p-3 overflow-hidden">
+
+                <div class="flex flex-col">
+                    <div class='flex flex-1  flex-col md:flex-row lg:flex-row mx-2'>
+                        <div class="mb-2 mx-2 border-solid border-gray-300  rounded border shadow-sm w-full ">
+                            <div class="bg-gray-200 px-2 py-3 border-solid border-gray-300 border-b">
+                                المناطق
+                            </div>
+                            <div class="p-3">
+                                <button data-modal='centeredFormModal'
+                                    class="modal-trigger bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                    إضافة منطة
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!--Grid Form-->
+
+                    <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+                        <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+                            <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
+                                بيانات الإدارات
+                            </div>
+                            <div class="p-3">
+                                <table class="table-responsive w-full rounded">
+                                    <thead>
+                                      <tr>
+                                        <th class="border w-1/4 px-4 py-2">Id</th>
+                                        <th class="border w-1/4 px-4 py-2">اسم المنطقة</th>
+                                        <th class="border w-1/4 px-4 py-2">اسم الإدارة</th>
+                                        <th class="border w-1/4 px-4 py-2">الملاحظات</th>
+                                        <th class="border w-1/4 px-4 py-2">العمليات</th>
+                                      </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+                                        {% for row in region %}
+                                        <tr>
+                                            <td class="border px-4 py-2">{{row.0}}</td>
+                                            <td class="border px-4 py-2">{{row.1}}</td>
+                                            <td class="border px-4 py-2">{{row.2}}</td>
+                                            <td class="border px-4 py-2">{{row.3}}</td>
+                                            <td class="border px-4 py-2">
+                                              <!--  <a class="bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white">
+                                                        <i class="fas fa-eye"></i></a> -->
+                                                <a href="#modaledit{{row.0}}" data-toggle="modal"   data-target="#modaledit{{row.0}}" class="bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white"> <i class="fas fa-edit"></i></a>
+                                               <!--
+                                                <div id="modaledit{{row.0}}" class="modal fade" role="dialog">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title">Update Information</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form method="POST">
+                                                                    <div class="form-group">
+                                                                        <label>اسم الإدارة:</label>
+                                                                        <input type="text" class="form-control" name="name" value="{{row.1}}">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label>الملاحظات:</label>
+                                                                        <input type="text" class="form-control" name="address" value="{{row.2}}">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <button class="btn btn-primary" type="sbumit">Update</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            -->
+                                                <a href="/deleteRegion/{{ row.0 }}"  class="bg-teal-300 cursor-pointer rounded p-1 mx-1 text-red-500"> <i class="fas fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                   
+                                    </tbody>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/Grid Form-->
+                </div>
+            </main>
+            <!--/Main-->
+<!-- Centered With a Form Modal -->
+<div id='centeredFormModal' class="modal-wrapper">
+    <div class="modal modal-centered">
+        <div class="modal-content shadow-lg p-5">
+            <div class="border-b p-2 pb-3 pt-0 mb-4">
+            <div class="flex justify-between items-center">
+                    اضافة منطقة
+                    <span class='close-modal cursor-pointer px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200'>
+                        <i class="fas fa-times text-gray-700"></i>
+                    </span>
+            </div>
+            </div>
+            <!-- Modal content -->
+            <form action="{{ url_for('addRegion')}}" method="POST" id='form_id' class="w-full">
+                <div class="flex flex-wrap -mx-3 mb-6">
+                    <div class="w-full px-3">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-first-name">
+                            اسم المنطقة
+                        </label>
+                        <input
+                        class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                        id="name"  name ="name" type="text" placeholder="" required = "1"  >
+                    </div>
+                </div>
+                <div class="flex flex-wrap -mx-3 mb-6">
+                    <div class="w-full px-3">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-first-name">
+                            اسم الإدارة
+                        </label>
+                        <select name="search_edara"  id="edara_id" class="form-control">
+                            <option value="" selected="selected"></option>
+                            {% for row in edara %}
+                            <option value='{{row.e_id}}'>{{row.e_name}}</option>
+                            {% endfor %}
+                        </select> 
+                    </div>
+                </div>
+                <div class="flex flex-wrap -mx-3 mb-6">
+                    <div class="w-full px-3">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-first-name">
+                            ملاظات
+                        </label>
+                        <input
+                        class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                        id="desc" name ="desc" type="text" placeholder="" required = "1"  >
+                    </div>
+                </div>
+                <div class="mt-5">
+                    <button name="submit" type="submit" class='bg-green-500 hover:bg-green-800 text-white font-bold py-2 px-4 rounded'> Submit </button>
+                    <span class='close-modal cursor-pointer bg-red-200 hover:bg-red-500 text-red-900 font-bold py-2 px-4 rounded'>
+                        Close
+                    </span>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% include "footer.html" %}
+            

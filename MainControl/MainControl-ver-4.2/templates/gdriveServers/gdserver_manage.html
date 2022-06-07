@@ -1,0 +1,259 @@
+{% include "header.html" %}
+{% block body %}
+
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+
+
+
+        <!-- Breadcrumbs -->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="">بداية لوحة كليجا</a></li>
+            <li class="breadcrumb-item"><a href="{{url_for('Index')}}">ادارة سرفرات جوجل دريف</a></li>
+            <li class="breadcrumb-item active">سرفرات {{gdServers|length }}</li>
+        </ol>
+
+        <a href="#" class="btn btn-primary pull-left" data-toggle="modal" data-target="#new_ext_form">
+            <i class="fa fa-plus-circle"></i> أضف سرفر جديد </a>
+
+
+        <div class="clearfix">
+
+        </div>
+        <br>
+
+        {%with messages = get_flashed_messages()%}
+        {%if messages%}
+        {% for message in messages %}
+        <div class="alert alert-success alert-dismissable" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{message}}
+        </div>
+        {%endfor%}
+        {%endif%}
+        {%endwith%}
+
+        <form method="post" action="/updateGDServerOrder/{{gdServers|length}}" id="edit_exts_form">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th style="width: 20px">ID</th>
+                        <th>Order</th>
+                        <th>اسم مستخدم الحساب</th>
+                        <th>الايميل</th>
+                        <th>عدد الملفات</th>
+                        <th>المساحة المتاحة (GB)</th>
+                        <th>المساحة المستخدمة (MB)</th>
+                        <th>المساحة المتبقية (GB)</th>
+                        <th>الخيارات</th>
+                    </tr>
+                    {% for gdserver in gdServers %}
+                    <tr>
+                        <td>{{gdserver['gd_id']}}</td>
+                        <td>
+                            <div class="input-group">
+                                <input type="text" name="gd_order_{{loop.index}}" value="{{gdserver['gd_order']}}"
+                                    class="form-control" style="float:left;">
+                                <input type="text" name="gd_id_{{loop.index}}" value="{{gdserver['gd_id']}}"
+                                    style="display: none;">
+                            </div>
+
+                        </td>
+                        <td>{{gdserver['username']}}</td>
+                        <td>{{gdserver['email']}}</td>
+                        <td>{{gdserver['filesNum']}}</td>
+                        <td>{{gdserver['maxSize']}} </td>
+                        <td>{{gdserver['usedSize']}} </td>
+                        <td>{{(gdserver['maxSize'] - (gdserver['usedSize']/1024))|round(3)}} </td>
+
+                        <td>
+                            <a href="/delGDServer/{{gdserver['gd_id']}}" onclick="return confirm_from();" title=""
+                                data-toggle="tooltip" class="btn btn-danger" data-original-title="حذف">
+                                <span class="fa fa-trash"></span>
+                            </a>
+                            <!--                             
+                            <a href="#modaledit{{gdserver['gd_id']}}" class="btn btn-success btn-xs" data-toggle="modal"
+                                dasta-target="#modaledit{{gdserver['gd_id']}}">Edit</a> 
+                            -->
+
+                            <button type="button" id="editbtn" class="btn btn-success editbtn"> Edit </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+            </table>
+            <input type="submit" name="editexts" value="موافق" class="btn btn-primary">
+            <br>
+            <input type="hidden" name="k_form_key" value="f3a8dad58e9be062a078293f0392a5fa9fd67426"><input type="hidden"
+                name="k_form_time" value="1642934892">
+        </form>
+
+        <br>
+
+        <!-- add new ext -->
+        <div id="new_ext_form" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addNewExt"
+            aria-hidden="true">
+
+            <form method="post" action="/addGDServer" id="add_new_ext--change--">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">اضافة سيرفر جديد</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form action="/updateGDServer" method="POST">
+                                <div class="form-group">
+                                    <label>اسم المستخدم:</label>
+                                    <input type="text" class="form-control" name="username" placeholder="Sayed"
+                                        aria-label="Username">
+                                </div>
+                                <div class="form-group">
+                                    <label>الايميل:</label>
+                                    <input type="text" class="form-control" name="email" placeholder="sa@gmail.com"
+                                        aria-label="Email">
+                                </div>
+                                <div class="form-group">
+                                    <label>المساحة المتاحة:</label>
+                                    <input type="text" class="form-control" name="maxSize" placeholder="500 GB"
+                                        aria-label="Max Size Available">
+                                </div>
+                                <div class="form-group">
+                                    <label>Order:</label>
+                                    <input type="text" class="form-control" name="gd_order" placeholder="1"
+                                        aria-label="Credential Path">
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-primary" type="sbumit">حفظ</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- end add new ext -->
+
+
+        <div id="modaledit" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Update Information</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/updateGDServer" method="POST">
+                            <div class="form-group">
+                                <label>ID:</label>
+                                <input type="text" class="form-control" name="gd_id" id="id" >
+                            </div>
+                            <div class="form-group">
+                                <label>اسم المستخدم:</label>
+                                <input type="text" class="form-control" name="username" id="name">
+                            </div>
+                            <div class="form-group">
+                                <label>الايميل:</label>
+                                <input type="text" class="form-control" name="email" id="gdemail">
+                            </div>
+                            <div class="form-group">
+                                <label>المساحة المتاحة:</label>
+                                <input type="text" class="form-control" name="maxSize" id="maxval">
+                            </div>
+                            <!--
+                            <div class="form-group">
+                                <label>Order:</label>
+                                <input type="text" class="form-control" name="gd_order" id="gd_order" >
+                            </div>
+                             -->
+                            <div class="form-group">
+                                <button class="btn btn-primary" type="sbumit">حفظ</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+        <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+
+                $('.editbtn').on('click', function () {
+
+                    $('#modaledit').modal('show');
+
+                    $tr = $(this).closest('tr');
+
+                    var data = $tr.children("td").map(function () {
+                        return $(this).text();
+                    }).get();
+
+                    console.log(data);
+
+                    $('#id').val(data[0]);
+                    $('#name').val(data[2]);
+                    $('#gdemail').val(data[3]);
+                    $('#maxval').val(data[5]);
+                    // $('#gd_order').val(data[4]);
+                });
+            });
+        </script>
+
+        <!-- converter table -->
+        <script type="text/javascript">
+            /*Created by: Uncle Jim :: http://jdstiles.com/javamain.html */
+
+            function convert(f) {
+                f.kb.value = Math.round(f.byte.value / 1024 * 100000) / 100000
+                f.mb.value = Math.round(f.byte.value / 1048576 * 100000) / 100000
+                f.gb.value = Math.round(f.byte.value / 1073741824 * 100000) / 100000
+            }
+
+            function convertkb(f) {
+                f.byte.value = Math.round(f.kb.value * 1024 * 100000) / 100000
+                f.mb.value = Math.round(f.kb.value / 1024 * 100000) / 100000
+                f.gb.value = Math.round(f.kb.value / 1048576 * 100000) / 100000
+            }
+
+            function convertmb(f) {
+                f.byte.value = Math.round(f.mb.value * 1048576 * 100000) / 100000
+                f.kb.value = Math.round(f.mb.value * 1024 * 100000) / 100000
+                f.gb.value = Math.round(f.mb.value / 1024 * 100000) / 100000
+            }
+
+            function convertgb(f) {
+                f.byte.value = Math.round(f.gb.value * 1073741824 * 100000) / 100000
+                f.kb.value = Math.round(f.gb.value * 1048576 * 100000) / 100000
+                f.mb.value = Math.round(f.gb.value * 1024 * 100000) / 100000
+            }
+        </script>
+
+
+
+
+        <!-- ********** -->
+        <!-- ********** -->
+        <!-- end exts -->
+        <!-- ********** -->
+        <!-- ********** -->
+
+
+        <br>
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+
+{% endblock %}
+{% include "footer.html" %}

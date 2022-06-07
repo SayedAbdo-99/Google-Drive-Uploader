@@ -1,0 +1,116 @@
+{% include "header.html" %}
+{% block body %}
+  
+                    <!--Grid Form-->
+
+                    <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+                        <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+                            <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
+                                Add New Kleeja Account
+                            </div>
+                            <div class="p-3">
+                                <form action="{{ url_for('addKlAccount')}}" class="w-full" method="POST">
+                                    <div class="flex flex-wrap -mx-3 mb-6">
+                                        <div class="w-full px-3">
+                                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
+                                                   for="grid-first-name">
+                                                Username
+                                            </label>
+                                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-grey"
+                                            id="username"  name ="username" type="text" placeholder="admin">
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap -mx-3 mb-6">
+                                        <div class="w-full px-3">
+                                            <label class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1"
+                                                   for="grid-password">
+                                                Password
+                                            </label>
+                                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-grey"
+                                                   id="password" name="password" type="password" placeholder="******************">
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap -mx-3 mb-6">
+                                        <div class="w-full px-3">
+                                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
+                                                   for="grid-first-name">
+                                                   Host
+                                            </label>
+                                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-grey"
+                                                   id="db_host" name="db_host" type="text" placeholder="localhost">
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap -mx-3 mb-6">
+                                        <div class="w-full px-3">
+                                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
+                                                   for="grid-first-name">
+                                                   Host Username
+                                            </label>
+                                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-grey"
+                                                   id="db_user" name="db_user" type="text" placeholder="root">
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap -mx-3 mb-6">
+                                        <div class="w-full px-3">
+                                            <label class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1"
+                                                   for="grid-password">
+                                                   Host Password
+                                            </label>
+                                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-grey"
+                                                   id="db_pass" name="db_pass" type="password" placeholder="******************">
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap -mx-3 mb-6">
+                                        <div class="w-full px-3">
+                                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
+                                                   for="grid-first-name">
+                                                   DataBase Name 
+                                            </label>
+                                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-grey"
+                                                   id="db_name" name="db_name" type="text" placeholder="kl">
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap -mx-3 mb-6">
+                                        <div class="w-full px-3">
+                                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
+                                                   for="grid-first-name">
+                                                   UploadPath
+                                            </label>
+                                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-grey"
+                                                   id="db_uploadPath" name="db_uploadPath" type="text" placeholder="xampp\htdocs\kl\uploads">
+                                        </div>
+                                    </div>
+                                    <!--
+                                    <div class="flex flex-wrap -mx-3 mb-6">
+                                        <div class="w-full px-3" id="fileUpload" role="tabpanel">
+
+                                            <div class="input-group mb-2"  id="file-block-1" onclick="document.getElementById('file1').click();">
+                                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
+                                                for="grid-first-name">
+                                                Credential Path
+                                               </label>
+                                                <input type="file" name="file_1_" id="file1" data-number="1" style="display:none">
+                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-grey"
+                                                         type="text" id="file-text1" disabled="disabled" placeholder="Select the Path" class="form-control">
+                                            </div>
+                                        </div>
+
+                                       
+                                    </div> -->
+
+                                    <div class="flex flex-wrap  -mx-3 mb-6">
+                                    <div class="md:w-1/3"></div>
+                                    <button class="bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded-full">
+                                        Save
+                                    </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/Grid Form-->
+{% endblock %}
+{% include "footer.html" %}
+            

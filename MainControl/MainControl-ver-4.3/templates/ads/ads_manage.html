@@ -1,0 +1,169 @@
+{% include "header.html" %}
+{% block body %}
+
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+
+
+
+        <!-- Breadcrumbs -->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="">بداية لوحة التحكم</a></li>
+            <li class="breadcrumb-item"><a href="{{url_for('getAds')}}">ادارة الاعلانات  </a></li>
+            <li class="breadcrumb-item active">اعلانات {{adsTable|length }}</li>
+        </ol>
+
+        <a href="#" class="btn btn-primary pull-left" data-toggle="modal" data-target="#new_ext_form">
+            <i class="fa fa-plus-circle"></i> أضف اعلان جديد </a>
+
+
+        <div class="clearfix">
+
+        </div>
+        <br>
+
+        {%with messages = get_flashed_messages()%}
+        {%if messages%}
+        {% for message in messages %}
+        <div class="alert alert-success alert-dismissable" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{message}}
+        </div>
+        {%endfor%}
+        {%endif%}
+        {%endwith%}
+        <br>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th style="width: 10px">ID</th>
+                        <th style="text-align:center; background-color: grey; width: 60px;">Tag</th>
+                        <th>Options</th>
+                    </tr>
+                    {% for ads in adsTable %}
+                    <tr>
+                        <td>{{ads['ads_id']}}</td>
+                        <td>{{ads['ads_tag']}}</td>
+                        <td>
+                            <a href="/delAds/{{ads['ads_id']}}" onclick="return confirm_from();" title=""
+                                data-toggle="tooltip" class="btn btn-danger" data-original-title="حذف">
+                                <span class="fa fa-trash"></span>
+                            </a>
+                            <button type="button" id="editbtn" class="btn btn-success editbtn"> Edit </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+            </table>
+        <br>
+        <br>
+        <!-- add new ext -->
+        <div id="new_ext_form" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addNewExt"
+            aria-hidden="true">
+
+            <form method="post" action="/addAds" id="add_new_ext--change--">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">اضافة اعلان جديد</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form action="/addAds" method="POST">
+                                <div class="form-group">
+                                    <label>Ads ID:</label>
+                                    <input type="text" class="form-control" name="ads_id">
+                                </div>
+                                <div class="form-group">
+                                    <label>Ads Tag:</label>
+                                    <!-- <input type="text" class="form-control" name="ads_tag"> -->
+                                    <textarea class="form-control" name="ads_tag" rows="7"> </textarea>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-primary" type="sbumit">حفظ</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- end add new ext -->
+
+
+        <div id="modaledit" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">تعديل بيانات اعلان</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/updateAds" method="POST">
+                            <div class="form-group">
+                                <label>Ads ID:</label>
+                                <input type="text" class="form-control" name="ads_id" id="ads_id_id">
+                            </div>
+                            <div class="form-group">
+                                <label>Ads Tag:</label>
+                                <!-- <input type="textarea" class="form-control" name="ads_tag" id="ads_tag_id"> -->
+                                <textarea class="form-control" name="ads_tag" id="ads_tag_id" rows="10"> </textarea>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary" type="sbumit">حفظ</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+        <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+
+                $('.editbtn').on('click', function () {
+
+                    $('#modaledit').modal('show');
+
+                    $tr = $(this).closest('tr');
+
+                    var data = $tr.children("td").map(function () {
+                        return $(this).text();
+                    }).get();
+
+                    console.log(data);
+
+                    $('#ads_id_id').val(data[0]);
+                    $('#ads_tag_id').val(data[1]);
+                    
+                    // $('#gd_order').val(data[4]);
+                });
+            });
+        </script>
+
+        <!-- ********** -->
+        <!-- ********** -->
+        <!-- end exts -->
+        <!-- ********** -->
+        <!-- ********** -->
+
+
+        <br>
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+
+{% endblock %}
+{% include "footer.html" %}

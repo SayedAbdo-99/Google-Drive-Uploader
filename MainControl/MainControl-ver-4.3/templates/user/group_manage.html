@@ -1,0 +1,85 @@
+{% include "header.html" %}
+{% block body %}
+
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+
+
+        
+    <!-- Breadcrumbs -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="./">بداية لوحة التحكم</a></li>
+        <li class="breadcrumb-item"><a href="index.php?cp=g_users&amp;smt=general">ادارة المجموعات</a></li>
+        <li class="breadcrumb-item active">الاعضاء </li>    </ol>
+
+
+
+<!-- if not normal user system, tell him -->
+
+
+
+<br>
+
+
+<div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+    <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+        <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
+            All Clients Data
+        </div>
+        <div class="p-3">
+            <table class="table-responsive w-full rounded">
+                <thead>
+                  <tr>
+                    <th class="border w-1/8 px-4 py-2">رقم</th>
+                    <th class="border w-1/4 px-4 py-2">اسم العميل</th>
+                    <th class="border w-1/8 px-4 py-2">خيارات</th>
+                  </tr>
+                </thead>
+                
+                <tbody>
+                    {% for row in clients %}
+                    <tr>
+                        <td class="border px-4 py-2">{{row['id']}}</td>
+                        <td class="border px-4 py-2">{{row['username']}}</td>
+                        <td class="border px-4 py-2">
+                            <a href="" onclick="return confirm_from();" title="" data-toggle="tooltip" class="btn btn-danger" data-original-title="حذف">
+                                <span class="fa fa-trash"></span>
+                            </a>
+                        <!--
+                           <a href="" data-toggle="modal"   data-target="" class="bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white"> <i class="fas fa-edit"></i></a>
+                           <a href=""  class="bg-teal-300 cursor-pointer rounded p-1 mx-1 text-red-500"> <i class="fas fa-trash"></i></a>
+                        -->
+                        </td>
+                    </tr>
+               
+                </tbody>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- pagination -->
+
+
+
+
+<!-- ********** -->
+<!-- ********** -->
+<!-- end show results -->
+<!-- ********** -->
+<!-- ********** -->
+
+
+
+<br>
+</div>
+<!-- /.container-fluid -->
+
+</div>
+
+{% endblock %}
+{% include "footer.html" %}

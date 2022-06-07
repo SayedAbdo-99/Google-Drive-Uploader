@@ -1,0 +1,571 @@
+<html lang="ar-sa"><head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>لوحة التحكم - klNew</title>
+
+    <link rel="shortcut icon" href="../static/images/favicon.ico">
+    <link rel="icon" type="image/png" href="../static/images/favicon.png">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Plugin CSS -->
+    <link href="../static/css/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/sb-admin.css" rel="stylesheet">
+    <link href="../static/css/custom.css" rel="stylesheet">
+
+            <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.rtl.min.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/sb-admin-rtl.css">
+
+
+        <style type="text/css">
+            body{font-family: "Tahoma",Arial,sans-serif;}
+            body{
+                direction: rtl; /* placing it here fixes the issue with jquery white page bug */
+            }
+        </style>
+    
+
+    <script type="text/javascript">
+        var STYLE_PATH_ADMIN = '../static/';
+        var go_to = 'g_users';
+    </script>
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+
+
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+
+    <a class="navbar-brand" href="./"><img src="../static//images/kleeja.png" alt="Kleeja" style="margin:2px 8px;vertical-align:middle;width:24px"> Kleeja <small>3.1.6</small></a>
+
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarAcp" aria-controls="navbarAcp" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+
+    <div class="collapse navbar-collapse" id="navbarAcp">
+
+        <!-- side menu -->
+        <ul class="navbar-nav navbar-sidenav">
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="بداية لوحة كليجا">
+                <a class="first-level nav-link " href="./"><i class="fa fa-fw fa-dashboard"></i> بداية لوحة كليجا</a>
+                <ul class="sidenav-second-level collapse" id="collapseIndex">
+                                    </ul>
+            </li>
+
+
+                            <li class="nav-item " id="menu_item2" data-toggle="tooltip" data-placement="right" title="" data-original-title="إعدادات">
+                    <a class="first-level nav-link" title="إعدادات" href="./index.php?cp=options">
+                        <i class="fa fa-fw fa-sliders"></i> إعدادات                     </a>
+                                            <ul class="sidenav-second-level collapse" id="collapseItem2">
+                                                    </ul>
+                                    </li>
+                            <li class="nav-item " id="menu_item3" data-toggle="tooltip" data-placement="right" title="" data-original-title="إدارة الملفات">
+                    <a class="first-level nav-link" title="إدارة الملفات" href="./index.php?cp=c_files">
+                        <i class="fa fa-fw fa-folder-open-o"></i> إدارة الملفات                     </a>
+                                            <ul class="sidenav-second-level collapse" id="collapseItem3">
+                                                    </ul>
+                                    </li>
+                            <li class="nav-item " id="menu_item4" data-toggle="tooltip" data-placement="right" title="" data-original-title="إدارة الصور">
+                    <a class="first-level nav-link" title="إدارة الصور" href="./index.php?cp=d_img_ctrl">
+                        <i class="fa fa-fw fa-image"></i> إدارة الصور                     </a>
+                                            <ul class="sidenav-second-level collapse" id="collapseItem4">
+                                                    </ul>
+                                    </li>
+                            <li class="nav-item " id="menu_item5" data-toggle="tooltip" data-placement="right" title="" data-original-title="رسائل">
+                    <a class="first-level nav-link" title="رسائل" href="./index.php?cp=e_calls">
+                        <i class="fa fa-fw fa-envelope"></i> رسائل <span class="badge badge-pill badge-warning bubble_calls">1</span>                    </a>
+                                            <ul class="sidenav-second-level collapse" id="collapseItem5">
+                                                    </ul>
+                                    </li>
+                            <li class="nav-item " id="menu_item6" data-toggle="tooltip" data-placement="right" title="" data-original-title="تبليغات">
+                    <a class="first-level nav-link" title="تبليغات" href="./index.php?cp=f_reports">
+                        <i class="fa fa-fw fa-bell"></i> تبليغات                     </a>
+                                            <ul class="sidenav-second-level collapse" id="collapseItem6">
+                                                    </ul>
+                                    </li>
+                            <li class="nav-item activex" id="menu_item7" data-toggle="tooltip" data-placement="right" title="" data-original-title="الأعضاء والمجموعات">
+                    <a class="first-level nav-link nav-link-collapse" title="الأعضاء والمجموعات" href="./index.php?cp=g_users">
+                        <i class="fa fa-fw fa-user-o"></i> الأعضاء والمجموعات                     </a>
+                                            <ul class="sidenav-second-level" id="collapseItem7">
+                            <li class="" id="c_general"><a href="index.php?cp=g_users&amp;smt=general">ادارة المجموعات</a></li><li class="" id="c_show_su"><a href="index.php?cp=h_search&amp;smt=users">بحث عن مستخدمين</a></li><li class="" id="c_new_u"><a href="index.php?cp=g_users&amp;smt=new_u">عضو جديد</a></li>                        </ul>
+                                    </li>
+                            <li class="nav-item " id="menu_item8" data-toggle="tooltip" data-placement="right" title="" data-original-title="بحث متقدم">
+                    <a class="first-level nav-link" title="بحث متقدم" href="./index.php?cp=h_search">
+                        <i class="fa fa-fw fa-search"></i> بحث متقدم                     </a>
+                                            <ul class="sidenav-second-level collapse" id="collapseItem8">
+                                                    </ul>
+                                    </li>
+                            <li class="nav-item " id="menu_item9" data-toggle="tooltip" data-placement="right" title="" data-original-title="إضافات برمجية">
+                    <a class="first-level nav-link" title="إضافات برمجية" href="./index.php?cp=j_plugins">
+                        <i class="fa fa-fw fa-plug"></i> إضافات برمجية                     </a>
+                                            <ul class="sidenav-second-level collapse" id="collapseItem9">
+                                                    </ul>
+                                    </li>
+                            <li class="nav-item " id="menu_item10" data-toggle="tooltip" data-placement="right" title="" data-original-title="التحكم بالحظر">
+                    <a class="first-level nav-link" title="التحكم بالحظر" href="./index.php?cp=k_ban">
+                        <i class="fa fa-fw fa-minus-circle"></i> التحكم بالحظر                     </a>
+                                            <ul class="sidenav-second-level collapse" id="collapseItem10">
+                                                    </ul>
+                                    </li>
+                            <li class="nav-item " id="menu_item11" data-toggle="tooltip" data-placement="right" title="" data-original-title="شروط الخدمة">
+                    <a class="first-level nav-link" title="شروط الخدمة" href="./index.php?cp=l_rules">
+                        <i class="fa fa-fw fa-institution"></i> شروط الخدمة                     </a>
+                                            <ul class="sidenav-second-level collapse" id="collapseItem11">
+                                                    </ul>
+                                    </li>
+                            <li class="nav-item " id="menu_item12" data-toggle="tooltip" data-placement="right" title="" data-original-title="الستايلات">
+                    <a class="first-level nav-link" title="الستايلات" href="./index.php?cp=m_styles">
+                        <i class="fa fa-fw fa-paint-brush"></i> الستايلات                     </a>
+                                            <ul class="sidenav-second-level collapse" id="collapseItem12">
+                                                    </ul>
+                                    </li>
+                            <li class="nav-item " id="menu_item13" data-toggle="tooltip" data-placement="right" title="" data-original-title="هيدر وفوتر إضافي">
+                    <a class="first-level nav-link" title="هيدر وفوتر إضافي" href="./index.php?cp=n_extra">
+                        <i class="fa fa-fw fa-window-restore"></i> هيدر وفوتر إضافي                     </a>
+                                            <ul class="sidenav-second-level collapse" id="collapseItem13">
+                                                    </ul>
+                                    </li>
+                            <li class="nav-item " id="menu_item14" data-toggle="tooltip" data-placement="right" title="" data-original-title="فحص عن تحديثات">
+                    <a class="first-level nav-link" title="فحص عن تحديثات" href="./index.php?cp=p_check_update">
+                        <i class="fa fa-fw fa-download"></i> فحص عن تحديثات                     </a>
+                                            <ul class="sidenav-second-level collapse" id="collapseItem14">
+                                                    </ul>
+                                    </li>
+                            <li class="nav-item " id="menu_item15" data-toggle="tooltip" data-placement="right" title="" data-original-title="صيانة">
+                    <a class="first-level nav-link" title="صيانة" href="./index.php?cp=r_repair">
+                        <i class="fa fa-fw fa-wrench"></i> صيانة                     </a>
+                                            <ul class="sidenav-second-level collapse" id="collapseItem15">
+                                                    </ul>
+                                    </li>
+                    </ul>
+
+        <!-- top menu -->
+        <ul class="navbar-nav ml-auto">
+
+
+            
+
+            <li class="nav-item">
+                <a class="nav-link" href="./?cp=g_users&amp;change_theme=light&amp;formkey=074b73f349c21847da9a"><i class="fa fa-fw fa-lightbulb-o"></i></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="https://kleeja.net" target="_blank" title="kleeja.net"><i class="fa fa-fw fa-support"></i></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="" onclick="javascript:return confirm_form();"><i class="fa fa-fw fa-sign-out"></i> مسح جلسة الإدارة [ admin ]</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('Index')}}"><i class="fa fa-fw fa-sign-out"></i> رجوع إلى المركز</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+
+
+
+    <!-- Breadcrumbs -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="./">بداية لوحة كليجا</a></li>
+        <li class="breadcrumb-item"><a href="">ادارة المجموعات</a></li>
+        <li class="breadcrumb-item active">إعدادات الإمتدادات (الاعضاء)</li>
+    </ol>
+
+    <a href="#" class="btn btn-primary pull-left" data-toggle="modal" data-target="#new_ext_form">
+        <i class="fa fa-plus-circle"></i> أضف امتداد جديد    </a>
+
+    
+    <div class="clearfix">
+
+    </div>
+    <br>
+
+    {%with messages = get_flashed_messages()%}
+    {%if messages%}
+    {% for message in messages %}
+    <div class="alert alert-success alert-dismissable" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{message}}
+    </div>
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
+<form method="post" action="/updateFileAuth/{{groupType}}" id="edit_exts_form"> 
+    
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon hidden-sm-down">سرعة التحميل</span>
+        <input type="text" name="speedUp" value="{{speedUp}}" placeholder="100 MB" size="6" class="form-control" style=" float:left;">
+        
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon hidden-sm-down">سرعة الـرفـع</span>
+        <input type="text" name="speedDown" value="{{speedDown}}" placeholder="100 MB" size="6" class="form-control" style="float:right;">
+
+        <input type="text" name="filesLen" value="{{files|length}}" style="display: none;"> 
+    </div>
+    <br>
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <th style="width: 20px">#</th>
+            <th>الامتداد</th>
+            <th>الحجم</th>
+            <th style="width: 100px">الخيارات</th>
+        </tr>
+        {% for row in files %}
+        <tr>
+                <td><img src="../static/images/filetypes/{{row['f_type']}}.png"></td>
+                <td>{{row['f_type']}}
+                  <input type="text" name="{{loop.index}}" value="{{row['f_type']}}" style="display: none;"> 
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="text" name="{{row['f_type']}}" value="{{row['f_size']}}" size="6" class="form-control" style="float:left;">
+                        <span class="input-group-addon hidden-sm-down">كيلوبايت</span>
+                    </div>
+
+                </td>
+                <td>
+                    <a href="/delFileAuth/{{row['f_id']}}/{{groupType}}" onclick="return confirm_from();" title="" data-toggle="tooltip" class="btn btn-danger" data-original-title="حذف">
+                        <span class="fa fa-trash"></span>
+                    </a>
+                </td>
+        </tr>
+        {% endfor %}
+        
+    </table>
+    <input type="submit" name="editexts" value="موافق" class="btn btn-primary">
+    <br>
+<input type="hidden" name="k_form_key" value="f3a8dad58e9be062a078293f0392a5fa9fd67426"><input type="hidden" name="k_form_time" value="1642934892">
+</form>
+
+    <br>
+<div class="card">
+    ملاحظة  : الأحجام تضبط بالكليوبايت . <a href="#converter_form" data-toggle="modal" data-target="#converter_modal">آلة حاسبة لتحويل الأحجام</a>
+</div>
+
+
+<!-- add new ext -->
+    <div id="new_ext_form" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addNewExt" aria-hidden="true">
+
+        <form method="post" action="/addFileAuth/{{groupType}}" id="add_new_ext--change--">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addNewExt">أضف امتداد جديد</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="gname">قم بكتابة الامتداد ليتم اضافته لهذه المجموعة.</label>
+                            <input type="text" class="form-control" id="extisnew" name="extisnew">
+                        </div>
+
+
+                        <input type="hidden" name="k_form_key" value="f3a8dad58e9be062a078293f0392a5fa9fd67426"><input type="hidden" name="k_form_time" value="1642934892">
+
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" name="newext" class="btn btn-primary" value="موافق">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+<!-- end add new ext -->
+
+
+
+<!-- converter -->
+    <div id="converter_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="converterBox" aria-hidden="true">
+
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="converterBox">آلة حاسبة لتحويل الأحجام</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                            <form>
+                            <table class="table table-striped text-center">
+                                <tbody><tr class="first">
+                                    <td>Byte</td>
+                                    <td>Kilobyte</td>
+                                    <td>Megabyte</td>
+                                    <td>Gigabyte</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" size="10" name="byte" value="0" class="form-control"></td>
+                                    <td><input type="text" size="10" name="kb" value="0" class="form-control"></td>
+                                    <td><input type="text" size="10" name="mb" value="0" class="form-control"></td>
+                                    <td><input type="text" size="10" name="gb" value="0" class="form-control"></td>
+                                </tr>
+
+                                <tr>
+                                    <td style="border-width:0px">
+                                        <button type="button" name="B2" class="btn btn-primary" onclick="convert(this.form)"><span class="bc">  &gt;  </span></button>
+                                    </td>
+                                    <td style="border-width:0px">
+                                        <button type="button" name="B22" class="btn btn-primary" onclick="convertkb(this.form)"><span class="bc">  &lt; &gt;  </span>
+                                        </button>
+                                    </td>
+                                    <td style="border-width:0px">
+                                        <button type="button" name="B23" class="btn btn-primary" onclick="convertmb(this.form)"><span class="bc">  &lt; &gt;  </span>
+                                    </button></td>
+                                    <td style="border-width:0px">
+                                        <button type="button" name="B24" class="btn btn-primary" onclick="convertgb(this.form)"><span class="bc">  &lt;  </span>
+                                    </button></td>
+                                </tr>
+                            </tbody></table>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+    </div>
+<!-- end converter -->
+
+
+<!-- converter table -->
+<script type="text/javascript">
+/*Created by: Uncle Jim :: http://jdstiles.com/javamain.html */
+
+    function convert(f)
+    {
+      f.kb.value=Math.round(f.byte.value/1024*100000)/100000
+      f.mb.value=Math.round(f.byte.value/1048576*100000)/100000
+      f.gb.value=Math.round(f.byte.value/1073741824*100000)/100000
+    }
+
+    function convertkb(f)
+    {
+      f.byte.value=Math.round(f.kb.value*1024*100000)/100000
+      f.mb.value=Math.round(f.kb.value/1024*100000)/100000
+      f.gb.value=Math.round(f.kb.value/1048576*100000)/100000
+    }
+
+    function convertmb(f)
+    {
+      f.byte.value=Math.round(f.mb.value*1048576*100000)/100000
+      f.kb.value=Math.round(f.mb.value*1024*100000)/100000
+      f.gb.value=Math.round(f.mb.value/1024*100000)/100000
+    }
+
+    function convertgb(f)
+    {
+      f.byte.value=Math.round(f.gb.value*1073741824*100000)/100000
+      f.kb.value=Math.round(f.gb.value*1048576*100000)/100000
+      f.mb.value=Math.round(f.gb.value*1024*100000)/100000
+    }
+</script>
+
+
+
+
+<!-- ********** -->
+<!-- ********** -->
+<!-- end exts -->
+<!-- ********** -->
+<!-- ********** -->
+
+
+<br>
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- /.content-wrapper -->
+
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fa fa-chevron-up"></i>
+</a>
+
+<!-- Bootstrap core JavaScript -->
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/tether.min.js"></script>
+<script src="../static/js/popper.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+
+
+<!-- extra javascript -->
+<script type="text/javascript" src="../static/js/jqBarGraph.js"></script>
+
+
+
+<script type="text/javascript">
+$(function () {
+
+    //check for msg, reports every 5min
+    setTimeout(check_msg_and_reports, 240000);
+
+
+    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="popover"]').popover();
+
+
+    
+
+    
+
+
+    $(".cb-enable").click(function(){
+        var parent = $(this).parents('.switch');
+        $('.cb-disable',parent).removeClass('selected');
+        $(this).addClass('selected');
+        $('.checkbox',parent).attr('checked', true);
+    });
+    $(".cb-disable").click(function(){
+        var parent = $(this).parents('.switch');
+        $('.cb-enable',parent).removeClass('selected');
+        $(this).addClass('selected');
+        $('.checkbox',parent).attr('checked', false);
+    });
+
+
+    // Scroll to top button appear
+    $(document).scroll(function() {
+        var scrollDistance = $(this).scrollTop();
+        if (scrollDistance > 100) {
+            $('.scroll-to-top').fadeIn();
+        } else {
+            $('.scroll-to-top').fadeOut();
+        }
+    });
+
+});
+
+function check_msg_and_reports(){
+    $.ajax({url: './?check_msgs=1', cache: false})
+    .done(function (data) {
+            if (data.indexOf("::") !== -1) {
+                var nums = data.split("::");
+                if (nums[0] !== 0) {
+                    $('.bubble_calls').html(nums[0]).css('display', 'inline');
+                }
+
+                if (nums[1] !== 0) {
+                    $('.bubble_reports').html(nums[1]).css('display', 'inline');
+                }
+            }
+        })
+    .fail(function(hxr, status, error) {
+            if(confirm('انتهت الجلسة، هل تريد تسجل الدخول من جديد؟')) {
+                location.reload();
+            } else {
+                location.href = "{{url_for('upload')}}";
+            }
+        });
+
+
+   setTimeout(check_msg_and_reports, 240000);
+}
+
+
+function change_color(obj, id, c, c2) {
+    c = (c === null) ? 'bg-danger' : c;
+    c2 = (c === null) ? 'bg-warning' : c2;
+    var ii = document.getElementById(id);
+    if (obj.checked) {
+        ii.setAttribute("class", c);
+        ii.setAttribute("className", c)
+    } else {
+        ii.setAttribute("class", c2);
+        ii.setAttribute("className", c2)
+    }
+}
+function checkAll(form, id, _do_c_, c, c2) {
+    for (var i = 0; i < form.elements.length; i++) {
+        if (form.elements[i].getAttribute("rel") !== id)  { continue; }
+        if (form.elements[i].checked) {
+            uncheckAll(form, id, _do_c_, c, c2);
+            break
+        }
+        form.elements[i].checked = true;
+        change_color(form.elements[i], _do_c_ + '[' + form.elements[i].value + ']', c, c2)
+    }
+}
+function uncheckAll(form, id, _do_c_, c, c2) {
+    for (var i = 0; i < form.elements.length; i++) {
+        if (form.elements[i].getAttribute("rel") !== id) { continue; }
+        form.elements[i].checked = false;
+        change_color(form.elements[i], _do_c_ + '[' + form.elements[i].value + ']', c, c2)
+    }
+}
+function change_color_exts(id) {
+    eval('var ii = document.getElementById("su[' + id + ']");');
+    eval('var g_obj = document.getElementById("gal_' + id + '");');
+    eval('var u_obj = document.getElementById("ual_' + id + '");');
+    if (g_obj.checked && u_obj.checked) {
+        ii.setAttribute("class", 'o_all');
+        ii.setAttribute("className", 'o_all')
+    } else if (g_obj.checked) {
+        ii.setAttribute("class", 'o_g');
+        ii.setAttribute("className", 'o_g')
+    } else if (u_obj.checked) {
+        ii.setAttribute("class", 'o_u');
+        ii.setAttribute("className", 'o_u')
+    } else {
+        ii.setAttribute("class", '');
+        ii.setAttribute("className", '')
+    }
+}
+function checkAll_exts(form, id, _do_c_) {
+    for (var i = 0; i < form.elements.length; i++) {
+        if (form.elements[i].getAttribute("rel") !== id) { continue; }
+        if (form.elements[i].checked) {
+            uncheckAll_exts(form, id, _do_c_);
+            break
+        }
+        form.elements[i].checked = true;
+        change_color_exts(form.elements[i].value)
+    }
+}
+function uncheckAll_exts(form, id, _do_c_) {
+    for (var i = 0; i < form.elements.length; i++) {
+        if (form.elements[i].getAttribute("rel") !== id) {  continue; }
+        form.elements[i].checked = false;
+        change_color_exts(form.elements[i].value)
+    }
+}
+
+
+function confirm_form(r)
+    {
+        var msg = !r ? 'هل أنت متأكد من القيام بهذه العملية؟' : r;
+        return confirm(msg);
+    }
+
+function get_kleeja_link(link) {
+    location.href = link;
+}
+</script>
+
+
+
+</body></html>

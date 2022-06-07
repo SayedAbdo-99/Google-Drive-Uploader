@@ -1,0 +1,314 @@
+{% include "header.html" %}
+{% block body %}
+
+<section class="ftco-section">
+
+    <div class="container">
+        <div class="row justify-content-center mb-3 pb-3">
+            <div class="col-md-12 heading-section text-center ftco-animate">
+                <h2 class="mb-4">Upload Your Files to Google Drive</h2>
+                <div class="container">
+
+                    <form id="uploader" action="{{ url_for('upFile')}}"  method="post" >
+
+                        <div class="card text-center">
+                            <div class="card-header">
+                                <ul class="nav nav-tabs card-header-tabs">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-toggle="tab" href="#fileUpload" role="tab">رفع الملفات</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-body tab-content">
+                                
+                                <div class="tab-pane active" id="fileUpload" role="tabpanel">
+
+                                    <div class="input-group mb-2"  id="file-block-1" style="file-block-1" onclick="document.getElementById('file1').click();">
+                                        <span class="input-group-prepend">
+                                            <div class="btn btn-primary file-button-browse">
+                                                <img src="static/styles/bootstrap/images/folder.png" width="20" height="20">
+                                                <span class="image-preview-input-title">افتح</span>
+                                            </div>
+                                        </span>
+                                        <input type="file" name="file_1_" id="file1" data-number="1" style="display:none"> </div>
+                                        <input type="text" name="text" id="file-text1"  placeholder="لم تقم بإختيار ملف!" class="form-control">
+                                   
+                                    <div>
+                                        <br>
+                                        
+                                        <input type="submit" id="submitr" name="submitr" value="رفع الملفات" class="btn btn-outline-primary">
+                                     <!-- 
+                                        <a href="/upFile/file" class="btn btn-danger btn-xs"   onclick="return confirm('Are You Sure For Delete?')">Delete</a>
+                                    -->
+                                    </div>
+                
+                                </div>
+                            </div>
+                        </div>
+                
+                    </form>
+
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+<!--
+    <div class="container">
+        <div class="row">
+            {% for row in products %}
+            <div class="col-md-6 col-lg-3 ftco-animate">
+                <div class="product">
+                    <a href="#" class="img-prod"><img class="img-fluid" src="../static/images/{{row.4}}"
+                                                      alt="Colorlib Template">
+                        <span class="status">30%</span>
+                        <div class="overlay"></div>
+                    </a>
+                    <div class="text py-3 pb-4 px-3 text-center">
+                        <h3><a href="#">{{row.1}}</a></h3>
+                        <h3><a href="#">{{row.3}}</a></h3>
+                        <div class="d-flex">
+                            <div class="pricing">
+                                <p class="price"><span class="mr-2 price-dc">$120.00</span><span
+                                        class="price-sale">${{row.2}}</span></p>
+                            </div>
+                        </div>
+                        <div class="bottom-area d-flex px-3">
+                            <div class="m-auto d-flex">
+                                <a href="#"
+                                   class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                    <span><i class="ion-ios-menu"></i></span>
+                                </a>
+                                <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                    <span><i class="ion-ios-cart"></i></span>
+                                </a>
+                                <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                    <span><i class="ion-ios-heart"></i></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="col-md-6 col-lg-3 ftco-animate">
+                <div class="product">
+                    <a href="#" class="img-prod"><img class="img-fluid" src="../static/images/product-2.jpg"
+                                                      alt="Colorlib Template">
+                        <div class="overlay"></div>
+                    </a>
+                    <div class="text py-3 pb-4 px-3 text-center">
+                        <h3><a href="#">Strawberry</a></h3>
+                        <div class="d-flex">
+                            <div class="pricing">
+                                <p class="price"><span>$120.00</span></p>
+                            </div>
+                        </div>
+                        <div class="bottom-area d-flex px-3">
+                            <div class="m-auto d-flex">
+                                <a href="#"
+                                   class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                    <span><i class="ion-ios-menu"></i></span>
+                                </a>
+                                <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                    <span><i class="ion-ios-cart"></i></span>
+                                </a>
+                                <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                    <span><i class="ion-ios-heart"></i></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 ftco-animate">
+                <div class="product">
+                    <a href="#" class="img-prod"><img class="img-fluid" src="../static/images/product-3.jpg"
+                                                      alt="Colorlib Template">
+                        <div class="overlay"></div>
+                    </a>
+                    <div class="text py-3 pb-4 px-3 text-center">
+                        <h3><a href="#">Green Beans</a></h3>
+                        <div class="d-flex">
+                            <div class="pricing">
+                                <p class="price"><span>$120.00</span></p>
+                            </div>
+                        </div>
+                        <div class="bottom-area d-flex px-3">
+                            <div class="m-auto d-flex">
+                                <a href="#"
+                                   class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                    <span><i class="ion-ios-menu"></i></span>
+                                </a>
+                                <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                    <span><i class="ion-ios-cart"></i></span>
+                                </a>
+                                <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                    <span><i class="ion-ios-heart"></i></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 ftco-animate">
+                <div class="product">
+                    <a href="#" class="img-prod"><img class="img-fluid" src="../static/images/product-4.jpg"
+                                                      alt="Colorlib Template">
+                        <div class="overlay"></div>
+                    </a>
+                    <div class="text py-3 pb-4 px-3 text-center">
+                        <h3><a href="#">Purple Cabbage</a></h3>
+                        <div class="d-flex">
+                            <div class="pricing">
+                                <p class="price"><span>$120.00</span></p>
+                            </div>
+                        </div>
+                        <div class="bottom-area d-flex px-3">
+                            <div class="m-auto d-flex">
+                                <a href="#"
+                                   class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                    <span><i class="ion-ios-menu"></i></span>
+                                </a>
+                                <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                    <span><i class="ion-ios-cart"></i></span>
+                                </a>
+                                <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                    <span><i class="ion-ios-heart"></i></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 ftco-animate">
+                <div class="product">
+                    <a href="#" class="img-prod"><img class="img-fluid" src="../static/images/product-5.jpg"
+                                                      alt="Colorlib Template">
+                        <span class="status">30%</span>
+                        <div class="overlay"></div>
+                    </a>
+                    <div class="text py-3 pb-4 px-3 text-center">
+                        <h3><a href="#">Tomatoe</a></h3>
+                        <div class="d-flex">
+                            <div class="pricing">
+                                <p class="price"><span class="mr-2 price-dc">$120.00</span><span
+                                        class="price-sale">$80.00</span></p>
+                            </div>
+                        </div>
+                        <div class="bottom-area d-flex px-3">
+                            <div class="m-auto d-flex">
+                                <a href="#"
+                                   class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                    <span><i class="ion-ios-menu"></i></span>
+                                </a>
+                                <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                    <span><i class="ion-ios-cart"></i></span>
+                                </a>
+                                <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                    <span><i class="ion-ios-heart"></i></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 ftco-animate">
+                <div class="product">
+                    <a href="#" class="img-prod"><img class="img-fluid" src="../static/images/product-6.jpg"
+                                                      alt="Colorlib Template">
+                        <div class="overlay"></div>
+                    </a>
+                    <div class="text py-3 pb-4 px-3 text-center">
+                        <h3><a href="#">Brocolli</a></h3>
+                        <div class="d-flex">
+                            <div class="pricing">
+                                <p class="price"><span>$120.00</span></p>
+                            </div>
+                        </div>
+                        <div class="bottom-area d-flex px-3">
+                            <div class="m-auto d-flex">
+                                <a href="#"
+                                   class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                    <span><i class="ion-ios-menu"></i></span>
+                                </a>
+                                <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                    <span><i class="ion-ios-cart"></i></span>
+                                </a>
+                                <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                    <span><i class="ion-ios-heart"></i></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 ftco-animate">
+                <div class="product">
+                    <a href="#" class="img-prod"><img class="img-fluid" src="../static/images/product-7.jpg"
+                                                      alt="Colorlib Template">
+                        <div class="overlay"></div>
+                    </a>
+                    <div class="text py-3 pb-4 px-3 text-center">
+                        <h3><a href="#">Carrots</a></h3>
+                        <div class="d-flex">
+                            <div class="pricing">
+                                <p class="price"><span>$120.00</span></p>
+                            </div>
+                        </div>
+                        <div class="bottom-area d-flex px-3">
+                            <div class="m-auto d-flex">
+                                <a href="#"
+                                   class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                    <span><i class="ion-ios-menu"></i></span>
+                                </a>
+                                <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                    <span><i class="ion-ios-cart"></i></span>
+                                </a>
+                                <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                    <span><i class="ion-ios-heart"></i></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 ftco-animate">
+                <div class="product">
+                    <a href="#" class="img-prod"><img class="img-fluid" src="../static/images/product-8.jpg"
+                                                      alt="Colorlib Template">
+                        <div class="overlay"></div>
+                    </a>
+                    <div class="text py-3 pb-4 px-3 text-center">
+                        <h3><a href="#">Fruit Juice</a></h3>
+                        <div class="d-flex">
+                            <div class="pricing">
+                                <p class="price"><span>$120.00</span></p>
+                            </div>
+                        </div>
+                        <div class="bottom-area d-flex px-3">
+                            <div class="m-auto d-flex">
+                                <a href="#"
+                                   class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                    <span><i class="ion-ios-menu"></i></span>
+                                </a>
+                                <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                    <span><i class="ion-ios-cart"></i></span>
+                                </a>
+                                <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                    <span><i class="ion-ios-heart"></i></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+-->
+  {% endblock %}
+{% include "footer.html" %}

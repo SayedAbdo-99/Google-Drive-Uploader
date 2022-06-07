@@ -1,0 +1,109 @@
+</div>
+        <!--Footer-->
+        <footer class="bg-grey-darkest text-white p-2">
+            <div class="flex flex-1 mx-auto">&copy; My Design</div>
+        </footer>
+        <!--/footer-->
+
+    </div>
+
+</div>
+<script src="../static/main.js"></script>
+
+<!--
+
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+    
+    $(document).ready(function(){
+        $('#uploader').submit(function(){
+            var numfiles = 0;
+            $("#uploader input:file").each(function() {
+                if ($(this).get(0).files.length !== 0) {
+                    numfiles++;
+                }
+            });
+    
+    
+            if(numfiles == 0){
+                alert('لم تقم بإختيار ملف!');
+                return false;
+            }
+    
+    
+            $('#loadbox').css('display', 'block');
+            $('#uploader').css('display', 'none');
+    
+        });
+    
+    
+        $("#uploader input:file").change(function (){
+            if(!check_selected_file(this)){
+                $(this).val('');
+            }else{
+                if($(this).data('number') !== null){
+                    var selected_text = $('#file-text' + $(this).data('number'));
+                    selected_text.val($(this).val());
+                    //show another one
+                    var current_plus_one = Number($(this).data('number')) + 1;
+                    if($('#file-block-' + current_plus_one) !== null){
+                        $('#file-block-' + current_plus_one).show();
+                    }else{
+                        //alert reached limit
+                    }
+                }
+            }
+        });
+    
+    });
+    
+    
+    var allowed_exts = ['gif', 'png', 'jpg', 'jpeg', 'bmp', 'zip', 'rar'];
+    var allowed_sizes = [2097152, 2097152, 2097152, 2097152, 2097152, 2097152, 2097152];
+    
+    function check_selected_file(file) {
+        var selected_file = file.files[0];
+        var file_name = selected_file.name;
+        var ext_dot_position = file_name.lastIndexOf(".");
+    
+        if(ext_dot_position === -1){
+            alert('اسم الملف "%s" يحتوي على أحرف غير مسموحة .. الرجاء تغيير اسم الملف والمحاولة من جديد '.replace('%s', file_name));
+            return false;
+        }
+        var file_extension = file_name.substring(ext_dot_position + 1).toLowerCase();
+        var file_size = selected_file.size;
+    
+        if(!(allowed_exts.indexOf(file_extension) > -1)){
+            //extension not allowed message alert
+            alert(' الامتداد "%s" غير مسموح '.replace('%s', file_extension));
+            return false;
+        }else{
+    
+            //check size
+            var ext_allowed_size = allowed_sizes[allowed_exts.indexOf(file_extension)];
+            if(file_size > ext_allowed_size){
+                //size is larger than allowed message alert
+                alert('الحجم للملف "%1$s" يجب أن يكون أقل من %2$s .'.replace('%1$s', file_name).replace('%2$s', (ext_allowed_size/1048576).toFixed(2) + ' MB'));
+                return false;
+            }
+        }
+    
+        return true;
+    }
+    
+    function update_kleeja_captcha(captcha_file, input_id)
+    {
+        document.getElementById(input_id).value = '';
+        //Get a reference to CAPTCHA image
+        img = document.getElementById('kleeja_img_captcha');
+        //Change the image
+        img.src = captcha_file + '&' + Math.random();
+    }
+</script>
+-->
+
+</body>
+
+</html>

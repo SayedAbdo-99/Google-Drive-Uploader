@@ -1,0 +1,79 @@
+{% include "header.html" %}
+{% block body %}
+
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+
+
+
+        <!-- Breadcrumbs -->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="./">بداية لوحة التحكم</a></li>
+            <li class="breadcrumb-item"><a href="">ادارة المجموعات</a></li>
+            <li class="breadcrumb-item active">المسؤولين {{admins|length }}</li>
+        </ol>
+
+
+
+        <!-- if not normal user system, tell him -->
+
+
+
+        <br>
+
+
+        {% for admin in admins %}
+        <ul class="list-group">
+
+            <li class="list-group-item d-flex justify-content-between">
+                <div class="col col-md-auto">
+                    <h3>{{admin['username']}} <i class="fa fa-star text-warning" title="" data-toggle="tooltip"
+                            style="font-size: medium;vertical-align: top;" data-original-title="مؤسس"></i></h3>
+
+                    <small class="text-muted">
+                        <i class="fa fa-users"></i> المجموعة: المسؤولين &nbsp; <i class="fa fa-clock-o"></i> آخر زيارة:
+                        10 ثواني مضت </small>
+                </div>
+                <div class="col col-md-auto">
+                    <div class="btn-group btn-group-sm" role="group" aria-label="...">
+
+                        <a target="_blank" href="" title="استعراض الملفات" class="btn btn-secondary"><i
+                                class="fa fa-folder-open-o" title="استعراض الملفات"></i> استعراض الملفات</a>
+                        <a href="" class="btn btn-secondary" onclick="javascript:return confirm_form();"
+                            title="حذف كل ملفات العضوية"><i class="fa fa-trash" title="حذف كل ملفات العضوية"></i> حذف كل
+                            ملفات العضوية</a>
+                        <a href="" title="تعديل" class="btn btn-secondary"><i class="fa fa-edit" title="تعديل"></i>
+                            تعديل</a>
+                    </div>
+                </div>
+            </li>
+
+
+        </ul>
+        {% endfor %}
+
+
+
+        <!-- pagination -->
+
+
+
+
+        <!-- ********** -->
+        <!-- ********** -->
+        <!-- end show results -->
+        <!-- ********** -->
+        <!-- ********** -->
+
+
+
+        <br>
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+
+{% endblock %}
+{% include "footer.html" %}

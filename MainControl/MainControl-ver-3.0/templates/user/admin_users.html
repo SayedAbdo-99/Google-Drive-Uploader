@@ -1,0 +1,510 @@
+<html lang="ar-sa"><head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>لوحة التحكم - klNew</title>
+
+    <link rel="shortcut icon" href="../static/images/favicon.ico">
+    <link rel="icon" type="image/png" href="../static/images/favicon.png">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Plugin CSS -->
+    <link href="../static/css/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/sb-admin.css" rel="stylesheet">
+    <link href="../static/css/custom.css" rel="stylesheet">
+
+            <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.rtl.min.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/sb-admin-rtl.css">
+
+
+        <style type="text/css">
+            body{font-family: "Tahoma",Arial,sans-serif;}
+            body{
+                direction: rtl; /* placing it here fixes the issue with jquery white page bug */
+            }
+        </style>
+    
+
+    <script type="text/javascript">
+        var STYLE_PATH_ADMIN = '../static/';
+        var go_to = 'g_users';
+    </script>
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+
+
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+
+    <a class="navbar-brand" href="./"><img src="../static//images/kleeja.png" alt="Kleeja" style="margin:2px 8px;vertical-align:middle;width:24px"> Kleeja <small>3.1.6</small></a>
+
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarAcp" aria-controls="navbarAcp" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+
+    <div class="collapse navbar-collapse" id="navbarAcp">
+
+        <!-- side menu -->
+        <ul class="navbar-nav navbar-sidenav">
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="بداية لوحة كليجا">
+                <a class="first-level nav-link " href="./"><i class="fa fa-fw fa-dashboard"></i> بداية لوحة كليجا</a>
+                <ul class="sidenav-second-level collapse" id="collapseIndex">
+                                    </ul>
+            </li>
+
+
+                            <li class="nav-item " id="menu_item2" data-toggle="tooltip" data-placement="right" title="" data-original-title="إعدادات">
+                    <a class="first-level nav-link" title="إعدادات" href="./index.php?cp=options">
+                        <i class="fa fa-fw fa-sliders"></i> إعدادات                     </a>
+                                            <ul class="sidenav-second-level collapse" id="collapseItem2">
+                                                    </ul>
+                                    </li>
+                            <li class="nav-item " id="menu_item3" data-toggle="tooltip" data-placement="right" title="" data-original-title="إدارة الملفات">
+                    <a class="first-level nav-link" title="إدارة الملفات" href="./index.php?cp=c_files">
+                        <i class="fa fa-fw fa-folder-open-o"></i> إدارة الملفات                     </a>
+                                            <ul class="sidenav-second-level collapse" id="collapseItem3">
+                                                    </ul>
+                                    </li>
+                            <li class="nav-item " id="menu_item4" data-toggle="tooltip" data-placement="right" title="" data-original-title="إدارة الصور">
+                    <a class="first-level nav-link" title="إدارة الصور" href="./index.php?cp=d_img_ctrl">
+                        <i class="fa fa-fw fa-image"></i> إدارة الصور                     </a>
+                                            <ul class="sidenav-second-level collapse" id="collapseItem4">
+                                                    </ul>
+                                    </li>
+                            <li class="nav-item " id="menu_item5" data-toggle="tooltip" data-placement="right" title="" data-original-title="رسائل">
+                    <a class="first-level nav-link" title="رسائل" href="./index.php?cp=e_calls">
+                        <i class="fa fa-fw fa-envelope"></i> رسائل <span class="badge badge-pill badge-warning bubble_calls" style="display: inline;">1</span>                    </a>
+                                            <ul class="sidenav-second-level collapse" id="collapseItem5">
+                                                    </ul>
+                                    </li>
+                            <li class="nav-item " id="menu_item6" data-toggle="tooltip" data-placement="right" title="" data-original-title="تبليغات">
+                    <a class="first-level nav-link" title="تبليغات" href="./index.php?cp=f_reports">
+                        <i class="fa fa-fw fa-bell"></i> تبليغات                     </a>
+                                            <ul class="sidenav-second-level collapse" id="collapseItem6">
+                                                    </ul>
+                                    </li>
+                            <li class="nav-item activex" id="menu_item7" data-toggle="tooltip" data-placement="right" title="" data-original-title="الأعضاء والمجموعات">
+                    <a class="first-level nav-link nav-link-collapse" title="الأعضاء والمجموعات" href="{{url_for('loadadmins')}}">
+                        <i class="fa fa-fw fa-user-o"></i> الأعضاء والمجموعات                     </a>
+                                            <ul class="sidenav-second-level" id="collapseItem7">
+                            <li class="active" id="c_general"><a href="{{url_for('main')}}">ادارة المجموعات</a></li><li class="" id="c_show_su"><a href="index.php?cp=h_search&amp;smt=users">بحث عن مستخدمين</a></li><li class="" id="c_new_u"><a href="index.php?cp=g_users&amp;smt=new_u">عضو جديد</a></li>                        </ul>
+                                    </li>
+                            <li class="nav-item " id="menu_item8" data-toggle="tooltip" data-placement="right" title="" data-original-title="بحث متقدم">
+                    <a class="first-level nav-link" title="بحث متقدم" href="./index.php?cp=h_search">
+                        <i class="fa fa-fw fa-search"></i> بحث متقدم                     </a>
+                                            <ul class="sidenav-second-level collapse" id="collapseItem8">
+                                                    </ul>
+                                    </li>
+                            <li class="nav-item " id="menu_item9" data-toggle="tooltip" data-placement="right" title="" data-original-title="إضافات برمجية">
+                    <a class="first-level nav-link" title="إضافات برمجية" href="./index.php?cp=j_plugins">
+                        <i class="fa fa-fw fa-plug"></i> إضافات برمجية                     </a>
+                                            <ul class="sidenav-second-level collapse" id="collapseItem9">
+                                                    </ul>
+                                    </li>
+                            <li class="nav-item " id="menu_item10" data-toggle="tooltip" data-placement="right" title="" data-original-title="التحكم بالحظر">
+                    <a class="first-level nav-link" title="التحكم بالحظر" href="./index.php?cp=k_ban">
+                        <i class="fa fa-fw fa-minus-circle"></i> التحكم بالحظر                     </a>
+                                            <ul class="sidenav-second-level collapse" id="collapseItem10">
+                                                    </ul>
+                                    </li>
+                            <li class="nav-item " id="menu_item11" data-toggle="tooltip" data-placement="right" title="" data-original-title="شروط الخدمة">
+                    <a class="first-level nav-link" title="شروط الخدمة" href="./index.php?cp=l_rules">
+                        <i class="fa fa-fw fa-institution"></i> شروط الخدمة                     </a>
+                                            <ul class="sidenav-second-level collapse" id="collapseItem11">
+                                                    </ul>
+                                    </li>
+                            <li class="nav-item " id="menu_item12" data-toggle="tooltip" data-placement="right" title="" data-original-title="الستايلات">
+                    <a class="first-level nav-link" title="الستايلات" href="./index.php?cp=m_styles">
+                        <i class="fa fa-fw fa-paint-brush"></i> الستايلات                     </a>
+                                            <ul class="sidenav-second-level collapse" id="collapseItem12">
+                                                    </ul>
+                                    </li>
+                            <li class="nav-item " id="menu_item13" data-toggle="tooltip" data-placement="right" title="" data-original-title="هيدر وفوتر إضافي">
+                    <a class="first-level nav-link" title="هيدر وفوتر إضافي" href="./index.php?cp=n_extra">
+                        <i class="fa fa-fw fa-window-restore"></i> هيدر وفوتر إضافي                     </a>
+                                            <ul class="sidenav-second-level collapse" id="collapseItem13">
+                                                    </ul>
+                                    </li>
+                            <li class="nav-item " id="menu_item14" data-toggle="tooltip" data-placement="right" title="" data-original-title="فحص عن تحديثات">
+                    <a class="first-level nav-link" title="فحص عن تحديثات" href="./index.php?cp=p_check_update">
+                        <i class="fa fa-fw fa-download"></i> فحص عن تحديثات                     </a>
+                                            <ul class="sidenav-second-level collapse" id="collapseItem14">
+                                                    </ul>
+                                    </li>
+                            <li class="nav-item " id="menu_item15" data-toggle="tooltip" data-placement="right" title="" data-original-title="صيانة">
+                    <a class="first-level nav-link" title="صيانة" href="{{url_for('changeUpPath')}}">
+                        <i class="fa fa-fw fa-wrench"></i> صيانة                     </a>
+                                            <ul class="sidenav-second-level collapse" id="collapseItem15">
+                                                    </ul>
+                                    </li>
+                    </ul>
+
+        <!-- top menu -->
+        <ul class="navbar-nav ml-auto">
+
+
+            
+
+            <li class="nav-item">
+                <a class="nav-link" href="./?cp=g_users&amp;change_theme=light&amp;formkey=f008a5edd94896a9a2ad"><i class="fa fa-fw fa-lightbulb-o"></i></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="https://kleeja.net" target="_blank" title="kleeja.net"><i class="fa fa-fw fa-support"></i></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="./?cp=b_lgoutcp&amp;formkey=f008a5edd94896a9a2ad" onclick="javascript:return confirm_form();"><i class="fa fa-fw fa-sign-out"></i> مسح جلسة الإدارة [ admin ]</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('upload')}}"><i class="fa fa-fw fa-sign-out"></i> رجوع إلى المركز</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+
+
+
+    <!-- Breadcrumbs -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="./">بداية لوحة كليجا</a></li>
+        <li class="breadcrumb-item" href="{{url_for('main')}}">ادارة المجموعات</li>
+    </ol>
+
+
+            <a href="#" class="btn btn-primary pull-left" data-toggle="modal" data-target="#group_add_new">
+            <i class="fa fa-plus-circle"></i> اضف مجموعة جديدة        </a>
+    
+    <div class="clearfix"></div>
+
+
+    <br>
+
+    <!-- if not normal user system, tell him -->
+    
+
+<!-- start data table -->
+    <h4>مجموعات اساسية</h4>
+
+
+    <!-- start essential groups -->
+    <div class="row mt-3">
+
+        
+        <div class="col-xl-4 col-sm-6 mb-4">
+            <div class="card text-white bg-dark o-hidden h-100">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <i class="fa fa-fw  fa-star"></i>
+                    </div>
+                    <div class="mr-5">
+                        المسؤولين                                                                                                </div>
+                </div>
+                <a href="" class="card-footer bg-white  clearfix small z-1" title="&nbsp;تعديل البيانات">
+                    <i class="fa fa-edit"></i> &nbsp;تعديل البيانات                </a>
+                <a href="" class="card-footer  bg-white clearfix small z-1" title="تعديل الصلاحيات">
+                    <i class="fa fa-tasks"></i> تعديل الصلاحيات                </a>
+                <a href="getFileAuth/admin" class="card-footer  bg-white clearfix small z-1" title="إعدادات الإمتدادات">
+                    <i class="fa fa-file-code-o"></i> إعدادات الإمتدادات                </a>
+                        <a class="card-footer  bg-white clearfix small z-1" href="{{url_for('loadadmins')}}" title="الاعضاء">
+                        <i class="fa fa-users"></i> الاعضاء                    </a>
+                
+            </div>
+        </div>
+
+        
+        <div class="col-xl-4 col-sm-6 mb-4">
+            <div class="card text-white bg-secondary o-hidden h-100">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <i class="fa fa-fw fa-user-secret"></i>
+                    </div>
+                    <div class="mr-5">
+                        الزوار                                                                                                </div>
+                </div>
+                <a href="" class="card-footer bg-white  clearfix small z-1" title="&nbsp;تعديل البيانات">
+                    <i class="fa fa-edit"></i> &nbsp;تعديل البيانات                </a>
+                <a href="" class="card-footer  bg-white clearfix small z-1" title="تعديل الصلاحيات">
+                    <i class="fa fa-tasks"></i> تعديل الصلاحيات                </a>
+                <a href="getFileAuth/vistor" class="card-footer  bg-white clearfix small z-1" title="إعدادات الإمتدادات">
+                    <i class="fa fa-file-code-o"></i> إعدادات الإمتدادات                </a>
+
+                
+            </div>
+        </div>
+
+        
+        <div class="col-xl-4 col-sm-6 mb-4">
+            <div class="card text-white bg-primary o-hidden h-100">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <i class="fa fa-fw fa-user-circle"></i>
+                    </div>
+                    <div class="mr-5">
+                        الاعضاء                                                                                    <i class="fa fa-check" title="" data-toggle="tooltip" data-original-title="هذه المجموعة افتراضية عند التسجيل"></i>
+                                                                        </div>
+                </div>
+                <a href="" class="card-footer bg-white  clearfix small z-1" title="&nbsp;تعديل البيانات">
+                    <i class="fa fa-edit"></i> &nbsp;تعديل البيانات                </a>
+                <a href="" class="card-footer  bg-white clearfix small z-1" title="تعديل الصلاحيات">
+                    <i class="fa fa-tasks"></i> تعديل الصلاحيات                </a>
+                <a href="getFileAuth/client" class="card-footer  bg-white clearfix small z-1" title="إعدادات الإمتدادات">
+                    <i class="fa fa-file-code-o"></i> إعدادات الإمتدادات                </a>
+                 <a class="card-footer  bg-white clearfix small z-1" href="{{url_for('loadclients')}}" title="الاعضاء">
+                    <i class="fa fa-users"></i> الاعضاء                    </a>
+                
+            </div>
+        </div>
+
+        
+    </div>
+
+
+<!-- end c_groups -->
+<!-- end if result -->
+
+
+
+<!-- new group modal -->
+<div id="group_add_new" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addNewGroup" aria-hidden="true">
+
+    <form method="post" action="index.php?cp=g_users&amp;smt=general" id="add_group_form">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addNewGroup">اضف مجموعة جديدة</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <label for="gname">اسم المجموعة</label>
+                    <input type="text" class="form-control" id="gname" name="gname">
+                </div>
+
+                <div class="form-group">
+                    <label for="cfrom">نسخ من</label>
+                    <select class="form-control" id="cfrom" name="cfrom">
+                        <option value="-1">المجموعة الافتراضية</option>
+                        <option value="1">المسؤولين</option><option value="3">الاعضاء</option>                                            </select>
+                </div>
+
+                <input type="hidden" name="k_form_key" value="692a262a47f245478860259e9d5f17eacbc09245"><input type="hidden" name="k_form_time" value="1642664744">
+
+            </div>
+            <div class="modal-footer">
+                <input type="submit" name="newgroup" class="btn btn-primary" value="موافق">
+            </div>
+        </div>
+    </div>
+    </form>
+    </div>
+<!-- end new group modal -->
+
+
+<!-- end delete group modal -->
+<!-- end delete group modal -->
+
+<!-- ********** -->
+<!-- ********** -->
+<!-- end smt == general -->
+<!-- ********** -->
+<!-- ********** -->
+
+
+
+
+
+<br>
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- /.content-wrapper -->
+
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fa fa-chevron-up"></i>
+</a>
+
+<!-- Bootstrap core JavaScript -->
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/tether.min.js"></script>
+<script src="../static/js/popper.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+
+
+<!-- extra javascript -->
+<script type="text/javascript" src="../static/js/jqBarGraph.js"></script>
+
+
+
+<script type="text/javascript">
+$(function () {
+
+    //check for msg, reports every 5min
+    setTimeout(check_msg_and_reports, 240000);
+
+
+    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="popover"]').popover();
+
+
+    
+
+    
+
+
+    $(".cb-enable").click(function(){
+        var parent = $(this).parents('.switch');
+        $('.cb-disable',parent).removeClass('selected');
+        $(this).addClass('selected');
+        $('.checkbox',parent).attr('checked', true);
+    });
+    $(".cb-disable").click(function(){
+        var parent = $(this).parents('.switch');
+        $('.cb-enable',parent).removeClass('selected');
+        $(this).addClass('selected');
+        $('.checkbox',parent).attr('checked', false);
+    });
+
+
+    // Scroll to top button appear
+    $(document).scroll(function() {
+        var scrollDistance = $(this).scrollTop();
+        if (scrollDistance > 100) {
+            $('.scroll-to-top').fadeIn();
+        } else {
+            $('.scroll-to-top').fadeOut();
+        }
+    });
+
+});
+
+function check_msg_and_reports(){
+    $.ajax({url: './?check_msgs=1', cache: false})
+    .done(function (data) {
+            if (data.indexOf("::") !== -1) {
+                var nums = data.split("::");
+                if (nums[0] !== 0) {
+                    $('.bubble_calls').html(nums[0]).css('display', 'inline');
+                }
+
+                if (nums[1] !== 0) {
+                    $('.bubble_reports').html(nums[1]).css('display', 'inline');
+                }
+            }
+        })
+    .fail(function(hxr, status, error) {
+            if(confirm('انتهت الجلسة، هل تريد تسجل الدخول من جديد؟')) {
+                location.reload();
+            } else {
+                location.href = "{{url_for('upload')}}";
+            }
+        });
+
+
+   setTimeout(check_msg_and_reports, 240000);
+}
+
+
+function change_color(obj, id, c, c2) {
+    c = (c === null) ? 'bg-danger' : c;
+    c2 = (c === null) ? 'bg-warning' : c2;
+    var ii = document.getElementById(id);
+    if (obj.checked) {
+        ii.setAttribute("class", c);
+        ii.setAttribute("className", c)
+    } else {
+        ii.setAttribute("class", c2);
+        ii.setAttribute("className", c2)
+    }
+}
+function checkAll(form, id, _do_c_, c, c2) {
+    for (var i = 0; i < form.elements.length; i++) {
+        if (form.elements[i].getAttribute("rel") !== id)  { continue; }
+        if (form.elements[i].checked) {
+            uncheckAll(form, id, _do_c_, c, c2);
+            break
+        }
+        form.elements[i].checked = true;
+        change_color(form.elements[i], _do_c_ + '[' + form.elements[i].value + ']', c, c2)
+    }
+}
+function uncheckAll(form, id, _do_c_, c, c2) {
+    for (var i = 0; i < form.elements.length; i++) {
+        if (form.elements[i].getAttribute("rel") !== id) { continue; }
+        form.elements[i].checked = false;
+        change_color(form.elements[i], _do_c_ + '[' + form.elements[i].value + ']', c, c2)
+    }
+}
+function change_color_exts(id) {
+    eval('var ii = document.getElementById("su[' + id + ']");');
+    eval('var g_obj = document.getElementById("gal_' + id + '");');
+    eval('var u_obj = document.getElementById("ual_' + id + '");');
+    if (g_obj.checked && u_obj.checked) {
+        ii.setAttribute("class", 'o_all');
+        ii.setAttribute("className", 'o_all')
+    } else if (g_obj.checked) {
+        ii.setAttribute("class", 'o_g');
+        ii.setAttribute("className", 'o_g')
+    } else if (u_obj.checked) {
+        ii.setAttribute("class", 'o_u');
+        ii.setAttribute("className", 'o_u')
+    } else {
+        ii.setAttribute("class", '');
+        ii.setAttribute("className", '')
+    }
+}
+function checkAll_exts(form, id, _do_c_) {
+    for (var i = 0; i < form.elements.length; i++) {
+        if (form.elements[i].getAttribute("rel") !== id) { continue; }
+        if (form.elements[i].checked) {
+            uncheckAll_exts(form, id, _do_c_);
+            break
+        }
+        form.elements[i].checked = true;
+        change_color_exts(form.elements[i].value)
+    }
+}
+function uncheckAll_exts(form, id, _do_c_) {
+    for (var i = 0; i < form.elements.length; i++) {
+        if (form.elements[i].getAttribute("rel") !== id) {  continue; }
+        form.elements[i].checked = false;
+        change_color_exts(form.elements[i].value)
+    }
+}
+
+
+function confirm_form(r)
+    {
+        var msg = !r ? 'هل أنت متأكد من القيام بهذه العملية؟' : r;
+        return confirm(msg);
+    }
+
+function get_kleeja_link(link) {
+    location.href = link;
+}
+</script>
+
+
+
+</body></html>
