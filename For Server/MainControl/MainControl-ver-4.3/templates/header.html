@@ -1,0 +1,244 @@
+<html lang="ar-sa">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>لوحة التحكم - klNew</title>
+
+    <link rel="shortcut icon" href="../static/images/favicon.ico">
+    <link rel="icon" type="image/png" href="../static/images/favicon.png">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Plugin CSS -->
+    <link href="../static/css/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/sb-admin.css" rel="stylesheet">
+    <link href="../static/css/custom.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/sb-admin-rtl.css">
+
+
+    <style type="text/css">
+        body {
+            font-family: "Tahoma", Arial, sans-serif;
+        }
+
+        body {
+            direction: rtl;
+            /* placing it here fixes the issue with jquery white page bug */
+        }
+    </style>
+
+
+    <script type="text/javascript">
+        var STYLE_PATH_ADMIN = '../static/';
+        var go_to = 'g_users';
+    </script>
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+
+        <a class="navbar-brand" href="./"><img src="../static/images/kleeja.png" alt="Kleeja"
+                style="margin:2px 8px;vertical-align:middle;width:24px"> UpLoader <small>4.1</small></a>
+
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#navbarAcp" aria-controls="navbarAcp" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+
+        <div class="collapse navbar-collapse" id="navbarAcp">
+
+            <!-- side menu -->
+            <ul class="navbar-nav navbar-sidenav">
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title=""
+                    data-original-title="بداية لوحة التحكم">
+                    <a class="first-level nav-link " href="./"><i class="fa fa-fw fa-dashboard"></i> بداية الوحة </a>
+                    <ul class="sidenav-second-level collapse" id="collapseIndex">
+                    </ul>
+                </li>
+
+                <li class="nav-item " id="menu_item2" data-toggle="tooltip" data-placement="right" title=""
+                    data-original-title="إعدادات سرفرات جوجل دريف">
+                    <a class="first-level nav-link" title="إعدادات سرفرات جوجل دريف" href="/getGDAccounts">
+                        <i class="fa fa-fw fa-sliders"></i> إعدادات سرفرات جوجل دريف </a>
+                    <ul class="sidenav-second-level collapse" id="collapseItem2">
+                    </ul>
+                </li>
+
+                <li class="nav-item " id="menu_item2" data-toggle="tooltip" data-placement="right" title=""
+                    data-original-title="إعدادات سرفرات التحميل">
+                    <a class="first-level nav-link" title="إعدادات سرفرات التحميل" href="/getUPAccounts">
+                        <i class="fa fa-fw fa-sliders"></i> إعدادات سرفرات التحميل </a>
+                    <ul class="sidenav-second-level collapse" id="collapseItem2">
+                    </ul>
+                </li>
+
+                <li class="nav-item " id="menu_item2" data-toggle="tooltip" data-placement="right" title=""
+                    data-original-title="إعدادات سرفرات التنزيل">
+                    <a class="first-level nav-link" title="إعدادات سرفرات التنزيل" href="">
+                        <i class="fa fa-fw fa-sliders"></i> إعدادات سرفرات التنزيل </a>
+                    <ul class="sidenav-second-level collapse" id="collapseItem2">
+                    </ul>
+                </li>
+                
+                <li class="nav-item " id="menu_item3" data-toggle="tooltip" data-placement="right" title=""
+                    data-original-title="إدارة الملفات">
+                    <a class="first-level nav-link" title="إدارة الملفات" href="http://185.229.119.49:4444/Main">
+                        <i class="fa fa-fw fa-folder-open-o"></i> UpLoader </a>
+                    <ul class="sidenav-second-level collapse" id="collapseItem3">
+                    </ul>
+                </li>
+            <!--
+                <li class="nav-item " id="menu_item4" data-toggle="tooltip" data-placement="right" title=""
+                    data-original-title="إدارة الصور">
+                    <a class="first-level nav-link" title="إدارة الصور" href="">
+                        <i class="fa fa-fw fa-image"></i> إدارة الصور </a>
+                    <ul class="sidenav-second-level collapse" id="collapseItem4">
+                    </ul>
+                </li>
+            
+                <li class="nav-item " id="menu_item5" data-toggle="tooltip" data-placement="right" title=""
+                    data-original-title="رسائل">
+                    <a class="first-level nav-link" title="رسائل" href="">
+                        <i class="fa fa-fw fa-envelope"></i> رسائل <span
+                            class="badge badge-pill badge-warning bubble_calls" style="display: inline;">1</span> </a>
+                    <ul class="sidenav-second-level collapse" id="collapseItem5">
+                    </ul>
+                </li>
+                
+                <li class="nav-item " id="menu_item6" data-toggle="tooltip" data-placement="right" title=""
+                    data-original-title="تبليغات">
+                    <a class="first-level nav-link" title="تبليغات" href="./index.php?cp=f_reports">
+                        <i class="fa fa-fw fa-bell"></i> تبليغات </a>
+                    <ul class="sidenav-second-level collapse" id="collapseItem6">
+                    </ul>
+                </li>
+
+                -->
+                <li class="nav-item activex" id="menu_item7" data-toggle="tooltip" data-placement="right" title=""
+                    data-original-title="الأعضاء والمجموعات">
+                    <a class="first-level nav-link nav-link-collapse" title="الأعضاء والمجموعات"
+                        href="{{url_for('Index')}}">
+                        <i class="fa fa-fw fa-user-o"></i> الأعضاء والمجموعات </a>
+                    <!--
+                    <ul class="sidenav-second-level" id="collapseItem7">
+                        <li class="active" id="c_general"><a href="{{url_for('Index')}}">ادارة المجموعات</a></li>
+                        <li class="" id="c_show_su"><a href="index.php?cp=h_search&amp;smt=users">بحث عن مستخدمين</a>
+                        </li>
+                        <li class="" id="c_new_u"><a href="index.php?cp=g_users&amp;smt=new_u">عضو جديد</a></li>
+                    </ul>
+                -->
+                </li>
+                <!--
+                <li class="nav-item " id="menu_item8" data-toggle="tooltip" data-placement="right" title=""
+                    data-original-title="بحث متقدم">
+                    <a class="first-level nav-link" title="بحث متقدم" href="./index.php?cp=h_search">
+                        <i class="fa fa-fw fa-search"></i> بحث متقدم </a>
+                    <ul class="sidenav-second-level collapse" id="collapseItem8">
+                    </ul>
+                </li>
+                <li class="nav-item " id="menu_item9" data-toggle="tooltip" data-placement="right" title=""
+                    data-original-title="إضافات برمجية">
+                    <a class="first-level nav-link" title="إضافات برمجية" href="./index.php?cp=j_plugins">
+                        <i class="fa fa-fw fa-plug"></i> إضافات برمجية </a>
+                    <ul class="sidenav-second-level collapse" id="collapseItem9">
+                    </ul>
+                </li>
+                <li class="nav-item " id="menu_item10" data-toggle="tooltip" data-placement="right" title=""
+                    data-original-title="التحكم بالحظر">
+                    <a class="first-level nav-link" title="التحكم بالحظر" href="./index.php?cp=k_ban">
+                        <i class="fa fa-fw fa-minus-circle"></i> التحكم بالحظر </a>
+                    <ul class="sidenav-second-level collapse" id="collapseItem10">
+                    </ul>
+                </li>
+            
+                <li class="nav-item " id="menu_item11" data-toggle="tooltip" data-placement="right" title=""
+                    data-original-title="شروط الخدمة">
+                    <a class="first-level nav-link" title="شروط الخدمة" href="">
+                        <i class="fa fa-fw fa-institution"></i> شروط الخدمة </a>
+                    <ul class="sidenav-second-level collapse" id="collapseItem11">
+                    </ul>
+                </li>
+-->
+                <li class="nav-item " id="menu_item11" data-toggle="tooltip" data-placement="right" title=""
+                    data-original-title="ادارة الاعلانات">
+                    <a class="first-level nav-link" title="ادارة الاعلانات" href="/getAds">
+                        <i class="fa fa-fw fa-institution"></i> ادارة الاعلانات </a>
+                    <ul class="sidenav-second-level collapse" id="collapseItem11">
+                    </ul>
+                </li>
+                <!--
+                <li class="nav-item " id="menu_item12" data-toggle="tooltip" data-placement="right" title=""
+                    data-original-title="الستايلات">
+                    <a class="first-level nav-link" title="الستايلات" href="./index.php?cp=m_styles">
+                        <i class="fa fa-fw fa-paint-brush"></i> الستايلات </a>
+                    <ul class="sidenav-second-level collapse" id="collapseItem12">
+                    </ul>
+                </li>
+                <li class="nav-item " id="menu_item13" data-toggle="tooltip" data-placement="right" title=""
+                    data-original-title="هيدر وفوتر إضافي">
+                    <a class="first-level nav-link" title="هيدر وفوتر إضافي" href="./index.php?cp=n_extra">
+                        <i class="fa fa-fw fa-window-restore"></i> هيدر وفوتر إضافي </a>
+                    <ul class="sidenav-second-level collapse" id="collapseItem13">
+                    </ul>
+                </li>
+                <li class="nav-item " id="menu_item14" data-toggle="tooltip" data-placement="right" title=""
+                    data-original-title="فحص عن تحديثات">
+                    <a class="first-level nav-link" title="فحص عن تحديثات" href="./index.php?cp=p_check_update">
+                        <i class="fa fa-fw fa-download"></i> فحص عن تحديثات </a>
+                    <ul class="sidenav-second-level collapse" id="collapseItem14">
+                    </ul>
+                </li>
+            
+                <li class="nav-item " id="menu_item15" data-toggle="tooltip" data-placement="right" title=""
+                    data-original-title="صيانة">
+                    <a class="first-level nav-link" title="صيانة" href="{{url_for('changeUpPath')}}">
+                        <i class="fa fa-fw fa-wrench"></i> صيانة </a>
+                    <ul class="sidenav-second-level collapse" id="collapseItem15">
+                    </ul>
+                </li>
+            -->
+
+            </ul>
+
+            <!-- top menu -->
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href=""><i
+                            class="fa fa-fw fa-lightbulb-o"></i></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="" target="_blank" title="kleeja.net"><i
+                            class="fa fa-fw fa-support"></i></a>
+                </li>
+
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href=""
+                        onclick="javascript:return confirm_form();"><i class="fa fa-fw fa-sign-out"></i> مسح جلسة
+                        الإدارة [ admin ]</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="http://185.229.119.49:4444/Main"><i class="fa fa-fw fa-sign-out"></i> رجوع إلى
+                        المركز</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
