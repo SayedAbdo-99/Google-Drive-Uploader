@@ -1,0 +1,121 @@
+{% include "header.html" %}
+{% block body %}
+
+
+{%with messages = get_flashed_messages()%}
+{%if messages%}
+{% for message in messages %}
+<div class="alert alert-success alert-dismissable" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    {{message}}
+</div>
+{%endfor%}
+{%endif%}
+{%endwith%}
+
+<div class="row " id="content_index">
+    <div class="col-md-5  " style="text-align: center; background-color: rgb(216, 216, 216);">
+        <div class="mt-3 mb-3">
+            <h2>تسجيل عضوية</h2>
+        </div>
+        
+        <!-- error messages -->
+        
+        <form action="SignUp" method="post">
+        
+            <div class="form-group">
+                <label for="lname">اسم المستخدم</label>
+                <input type="text" class="form-control" id="lname" name="lname" value="">
+            </div>
+        
+            <div class="form-group">
+                <label for="lpass">كلمة المرور</label>
+                <input type="password" class="form-control" id="lpass" name="lpass" value="">
+            </div>
+        
+            <div class="form-group">
+                <label for="lpass2">اعد كلمة المرور</label>
+                <input type="password" class="form-control" id="lpass2" name="lpass2" value="">
+            </div>
+        
+        
+            <div class="form-group">
+                <label for="lmail">البريد الإلكتروني</label>
+                <input type="email" class="form-control" id="lmail" name="lmail" value="" style="direction:ltr;">
+            </div>
+        
+        
+            
+        
+        
+            <input type="hidden" name="k_form_key" value="4a2b42a2e31756e51ce7ba01d26058eced985525"><input type="hidden" name="k_form_time" value="1643308647">
+        
+            <div class="form-group mt-3">
+                <input type="submit" name="submit" value="تسجيل عضوية" class="btn btn-primary">
+            </div>
+        
+        </form>
+    </div>
+    <div class="jumbotron col-md-auto " style="text-align: center; background-color: rgb(216, 216, 216);">
+        <p>اعلان (7) </p>
+        
+    </div>
+    <div class="col-md-5  " style="text-align: center; background-color: rgb(216, 216, 216);">
+        <div class="mt-3 mb-3">
+            <h2>دخول</h2>
+            <p class="text-muted">تسجيل الدخول</p>
+        </div>
+        
+        <!-- error messages -->
+
+        <form action="/Login" method="post" name="login_form">
+        
+            <div class="form-group">
+                <label for="lname">اسم المستخدم</label>
+                <input type="text" class="form-control" id="lname" name="lname" value="">
+            </div>
+        
+            <div class="form-group">
+                <label for="lpass">كلمة المرور</label>
+                <input type="password" class="form-control" id="lpass" name="lpass" value="">
+            </div>
+            <div class="form-group">
+                <p style="color: red;">
+                {{mgs}}
+                </p>
+            </div>
+            <label class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="remme" name="remme" value="31536000" checked="checked">
+                <br>
+                <label class="custom-control-label" for="remme">تذكرني </label>
+                <br>
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description"><small class="text-muted">(علًم هذا الخيار ان كان جهازك غير مشترك مع غيرك)</small></span>
+            </label>
+            <br>
+            <input type="hidden" name="k_form_key" value="7456b7183214cc6f131b5b35202a32dcbc2118f1"><input type="hidden" name="k_form_time" value="1643308841">
+        
+            <div class="row justify-content-between mt-3">
+                <div class="col col-md-auto">
+                    <input type="submit" name="submit" value="دخول" class="btn btn-primary">
+                </div>
+                
+                <div class="col col-md-auto">
+                    <a href="">نسيت كلمة المرور؟</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="jumbotron" style="text-align: center; background-color: rgb(216, 216, 216);">
+
+    اعلان (8)
+   
+</div>
+
+
+{% endblock %}
+{% include "footer.html" %}
